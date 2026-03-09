@@ -40,7 +40,7 @@ export function Footer() {
                 href="https://line.me/R/ti/p/@ugm3067r"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors justify-center md:justify-start"
               >
                 <MessageCircle className="h-4 w-4" />
                 แอดไลน์เพื่อปรึกษา
