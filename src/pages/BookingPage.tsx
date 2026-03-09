@@ -182,9 +182,9 @@ export default function BookingPage() {
           </div>
         </div>
 
-        {/* Right form panel */}
-        <div className="flex-1 p-6 md:p-12 lg:p-16 overflow-y-auto max-h-screen">
-          <div className="max-w-xl mx-auto space-y-10">
+        {/* Right form panel — mobile-first: generous padding, smooth scroll */}
+        <div className="flex-1 p-4 sm:p-6 md:p-12 lg:p-16 overflow-y-auto max-h-screen scroll-smooth">
+          <div className="max-w-xl mx-auto space-y-8 sm:space-y-10">
             <div>
               <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">ขอใบเสนอราคา</h1>
               <p className="font-body text-muted-foreground text-base">แค่เลือกตัวเลือก แล้วกรอกข้อมูลติดต่อ ทีมงานจัดให้ภายใน 24 ชม.</p>
