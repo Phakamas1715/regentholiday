@@ -296,7 +296,8 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              {/* Travelers */}
+              {/* Travelers (group only) */}
+              {tripType === "group" && (
               <div className="space-y-2">
                 <Label className="font-heading font-semibold text-sm">จำนวนผู้เดินทาง (คน)</Label>
                 <div className="flex items-center gap-4 bg-card rounded-xl border border-border p-4">
@@ -311,6 +312,7 @@ export default function BookingPage() {
                   <span className="font-body text-muted-foreground">คน</span>
                 </div>
               </div>
+              )}
 
               {/* Budget */}
               <div className="space-y-3">
