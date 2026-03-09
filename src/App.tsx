@@ -94,6 +94,7 @@ const App = () => (
                     <QuotationPreviewPage />
                   </ProtectedRoute>
                 }
+              />
 
               {/* Customer routes — lazy + protected */}
               <Route
