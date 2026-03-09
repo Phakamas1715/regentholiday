@@ -66,16 +66,29 @@ export function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-background border-t border-border p-4 space-y-3">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              onClick={() => setMobileOpen(false)}
-              className="block py-2 font-body text-base text-foreground hover:text-primary"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.external ? (
+              <a
+                key={item.path}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 font-body text-base text-foreground hover:text-primary"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 font-body text-base text-foreground hover:text-primary"
+              >
+                {item.label}
+              </Link>
+            )
+          )}
           <Button variant="hero" className="w-full mt-2">เริ่มวางแผนทริป</Button>
         </div>
       )}
