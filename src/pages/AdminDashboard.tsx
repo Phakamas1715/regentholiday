@@ -73,6 +73,7 @@ export default function AdminDashboard() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [generatingAI, setGeneratingAI] = useState<string | null>(null);
+  const [quotationLead, setQuotationLead] = useState<Lead | null>(null);
 
   useEffect(() => {
     fetchLeads();
