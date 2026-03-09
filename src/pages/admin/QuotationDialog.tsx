@@ -95,7 +95,7 @@ export function QuotationDialog({ open, onOpenChange, lead, onSuccess }: Quotati
     setSaving(true);
     const quotationNumber = generateQuotationNumber();
 
-    const { error } = await supabase.from("quotations").insert({
+    const { data, error } = await supabase.from("quotations").insert({
       quotation_number: quotationNumber,
       lead_id: lead.id,
       tour_program_id: selectedProgramId !== "none" ? selectedProgramId : null,
@@ -105,7 +105,7 @@ export function QuotationDialog({ open, onOpenChange, lead, onSuccess }: Quotati
       valid_until: validUntil || null,
       notes: notes || null,
       status: "draft",
-    });
+    }).select().single();
 
     if (error) {
       console.error(error);
@@ -114,6 +114,9 @@ export function QuotationDialog({ open, onOpenChange, lead, onSuccess }: Quotati
       toast.success(`สร้างใบเสนอราคา ${quotationNumber} แล้ว`);
       onOpenChange(false);
       onSuccess();
+      if (data?.id) {
+        navigate(`/admin/quotations/${data.id}`);
+      }
     }
     setSaving(false);
   };
