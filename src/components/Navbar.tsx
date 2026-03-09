@@ -1,8 +1,9 @@
 // Navbar component
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, LogOut, User, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import logoImg from "@/assets/logo-regent.png";
 
 const navItems = [
@@ -14,7 +15,14 @@ const navItems = [
 
 export function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, isAdmin, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white backdrop-blur-lg border-b border-border/50">
@@ -51,8 +59,37 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-3">
-          <Button variant="ghost" size="sm">เข้าสู่ระบบ</Button>
-          <Button variant="hero" size="sm">เริ่มวางแผนทริป</Button>
+          {user ? (
+            <>
+              {isAdmin && (
+                <Link to="/admin">
+                  <Button variant="ghost" size="sm" className="gap-1">
+                    <Shield className="h-4 w-4" />
+                    Admin
+                  </Button>
+                </Link>
+              )}
+              <Link to="/customer">
+                <Button variant="ghost" size="sm" className="gap-1">
+                  <User className="h-4 w-4" />
+                  บัญชีของฉัน
+                </Button>
+              </Link>
+              <Button variant="ghost" size="sm" onClick={handleSignOut} className="gap-1">
+                <LogOut className="h-4 w-4" />
+                ออกจากระบบ
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="ghost" size="sm">เข้าสู่ระบบ</Button>
+              </Link>
+              <Link to="/booking">
+                <Button variant="hero" size="sm">เริ่มวางแผนทริป</Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile toggle */}
@@ -90,7 +127,30 @@ export function Navbar() {
               </Link>
             )
           )}
-          <Button variant="hero" className="w-full mt-2">เริ่มวางแผนทริป</Button>
+          {user ? (
+            <>
+              {isAdmin && (
+                <Link to="/admin" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-primary font-semibold">
+                  🛡️ Admin Panel
+                </Link>
+              )}
+              <Link to="/customer" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-foreground hover:text-primary">
+                👤 บัญชีของฉัน
+              </Link>
+              <Button variant="outline" className="w-full mt-2" onClick={() => { handleSignOut(); setMobileOpen(false); }}>
+                ออกจากระบบ
+              </Button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" className="w-full">เข้าสู่ระบบ</Button>
+              </Link>
+              <Link to="/booking" onClick={() => setMobileOpen(false)}>
+                <Button variant="hero" className="w-full mt-2">เริ่มวางแผนทริป</Button>
+              </Link>
+            </>
+          )}
         </div>
       )}
     </nav>
