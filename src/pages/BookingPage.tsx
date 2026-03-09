@@ -38,7 +38,7 @@ const studyTopicOptions = [
 ];
 
 const accommodationLevels = ["ประหยัด (3 ดาว)", "สแตนดาร์ด (4 ดาว)", "พรีเมี่ยม (5 ดาว)"];
-const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น"];
+const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น", "ไม่แน่ใจ"];
 
 export default function BookingPage() {
   const navigate = useNavigate();
