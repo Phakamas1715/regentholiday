@@ -77,7 +77,8 @@ export default function BookingPage() {
     setSelectedTopics((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]);
 
   const handleSubmit = async () => {
-    if (!contactName || !contactPhone || !orgName || !destination) {
+    const finalDestination = destination === "__other__" ? customDestination : destination;
+    if (!contactName || !contactPhone || !orgName || !finalDestination) {
       toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, องค์กร, ปลายทาง)");
       return;
     }
