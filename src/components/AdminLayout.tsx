@@ -2,8 +2,8 @@ import { ReactNode, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import {
-  LayoutDashboard, UserPlus, FileText, BarChart3,
-  Settings, Menu, X, LogOut, ChevronRight,
+  LayoutDashboard, FileText, BarChart3,
+  Settings, Menu, X, LogOut, Receipt,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
