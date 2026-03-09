@@ -178,7 +178,8 @@ export default function BookingPage() {
               </div>
             </div>
 
-            {/* === Section: Organization === */}
+            {/* === Section: Organization (group only) === */}
+            {tripType === "group" && (
             <div className="space-y-4">
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">🏢 ข้อมูลองค์กร</h3>
               <div className="space-y-2">
@@ -202,6 +203,7 @@ export default function BookingPage() {
                 </div>
               </div>
             </div>
+            )}
 
             {/* === Section: Trip Details === */}
             <div className="space-y-4">
