@@ -369,8 +369,8 @@ export default function BookingPage() {
                 />
               </div>
             </div>
+            )}
 
-            {/* === Section: Preferences (optional) === */}
             <div className="space-y-4">
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">⚙️ ความต้องการเพิ่มเติม <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
