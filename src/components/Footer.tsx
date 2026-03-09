@@ -11,13 +11,17 @@ export function Footer() {
           <div className="space-y-4">
             <img src={logoImg} alt="Regent Holidays" className="h-12 object-contain" />
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
-              Regent Holidays Co., Ltd.<br />
-              บริษัททัวร์คุณภาพ จัดทริปต่างประเทศ<br />
+              Regent Holidays Co., Ltd.
+              <br />
+              บริษัททัวร์คุณภาพ จัดทริปต่างประเทศ
+              <br />
               ทั้งทริปส่วนตัว ครอบครัว และกรุ๊ปองค์กร
             </p>
             <div className="flex items-start gap-2 text-xs text-muted-foreground">
               <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
-              <span>3/85 Prachanivej Prime Square 1, 7th FL., Tessabannimitnue Rd., Lardyao, Jatujak, Bangkok 10900</span>
+              <span>
+                3/85 Prachanivej Prime Square 1, 7th FL., Tessabannimitnue Rd., Lardyao, Jatujak, Bangkok 10900
+              </span>
             </div>
           </div>
 
@@ -25,11 +29,19 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="font-heading font-semibold text-foreground">ทริปครอบครัว & ส่วนตัว</h3>
             <div className="space-y-3">
-              <a href="tel:0616351491" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="tel:0616351491"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Phone className="h-4 w-4" />
                 061-635-1491 (คุณนิค)
               </a>
-              <a href="https://lin.ee/5ANhUvT" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="https://line.me/R/ti/p/@ugm3067r"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
                 <MessageCircle className="h-4 w-4" />
                 แอดไลน์เพื่อปรึกษา
               </a>
@@ -37,11 +49,17 @@ export function Footer() {
 
             <h3 className="font-heading font-semibold text-foreground pt-2">กรุ๊ปเหมา & องค์กร</h3>
             <div className="space-y-3">
-              <a href="tel:0629692917" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="tel:0629692917"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Phone className="h-4 w-4" />
                 062-969-2917 (คุณศรี)
               </a>
-              <a href="mailto:kraiwitch.pawadee@regentholiday.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="mailto:kraiwitch.pawadee@regentholiday.com"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Mail className="h-4 w-4" />
                 kraiwitch.pawadee@regentholiday.com
               </a>
@@ -52,11 +70,31 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="font-heading font-semibold text-foreground">ลิงก์ด่วน</h3>
             <div className="space-y-3">
-              <Link to="/" className="block text-sm text-muted-foreground hover:text-primary transition-colors">หน้าแรก</Link>
-              <Link to="/packages" className="block text-sm text-muted-foreground hover:text-primary transition-colors">แพ็คเกจทัวร์</Link>
-              <Link to="/booking" className="block text-sm text-muted-foreground hover:text-primary transition-colors">จองทัวร์</Link>
-              <a href="https://www.regentholiday.com/about" target="_blank" rel="noopener noreferrer" className="block text-sm text-muted-foreground hover:text-primary transition-colors">เกี่ยวกับเรา</a>
-              <a href="https://www.regentholiday.com/contact" target="_blank" rel="noopener noreferrer" className="block text-sm text-muted-foreground hover:text-primary transition-colors">ติดต่อเรา</a>
+              <Link to="/" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                หน้าแรก
+              </Link>
+              <Link to="/packages" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                แพ็คเกจทัวร์
+              </Link>
+              <Link to="/booking" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+                จองทัวร์
+              </Link>
+              <a
+                href="https://www.regentholiday.com/about"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                เกี่ยวกับเรา
+              </a>
+              <a
+                href="https://www.regentholiday.com/contact"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                ติดต่อเรา
+              </a>
             </div>
           </div>
 
@@ -70,8 +108,16 @@ export function Footer() {
 
             <h3 className="font-heading font-semibold text-foreground pt-2">คำถามที่พบบ่อย</h3>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p><strong className="text-foreground">จองล่วงหน้ากี่วัน?</strong><br />แนะนำอย่างน้อย 30 วัน โดยเฉพาะช่วง High Season</p>
-              <p><strong className="text-foreground">ออกใบกำกับภาษีได้ไหม?</strong><br />ออกใบกำกับภาษีเต็มรูปแบบได้ทั้งบุคคลและบริษัท</p>
+              <p>
+                <strong className="text-foreground">จองล่วงหน้ากี่วัน?</strong>
+                <br />
+                แนะนำอย่างน้อย 30 วัน โดยเฉพาะช่วง High Season
+              </p>
+              <p>
+                <strong className="text-foreground">ออกใบกำกับภาษีได้ไหม?</strong>
+                <br />
+                ออกใบกำกับภาษีเต็มรูปแบบได้ทั้งบุคคลและบริษัท
+              </p>
             </div>
           </div>
         </div>
@@ -83,9 +129,7 @@ export function Footer() {
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Regent Holidays Co., Ltd. All rights reserved.
           </p>
-          <p className="text-xs text-muted-foreground">
-            ใบอนุญาตนำเที่ยว TAT License
-          </p>
+          <p className="text-xs text-muted-foreground">ใบอนุญาตนำเที่ยว TAT License</p>
         </div>
       </div>
     </footer>
