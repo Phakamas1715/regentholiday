@@ -56,6 +56,7 @@ export default function BookingPage() {
 
   // Trip
   const [destination, setDestination] = useState("");
+  const [customDestination, setCustomDestination] = useState("");
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const [travelers, setTravelers] = useState(30);
