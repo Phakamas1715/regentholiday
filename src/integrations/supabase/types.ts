@@ -14,7 +14,216 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leads: {
+        Row: {
+          accommodation_level: string | null
+          ai_generated_program: Json | null
+          assigned_to: string | null
+          budget_per_person: number | null
+          contact_email: string | null
+          contact_line_id: string | null
+          contact_name: string
+          contact_phone: string
+          created_at: string
+          destination: string
+          id: string
+          meal_preference: string | null
+          notes: string | null
+          num_travelers: number
+          org_name: string
+          org_type: Database["public"]["Enums"]["org_type"]
+          preferred_visits: string | null
+          special_requests: string | null
+          status: Database["public"]["Enums"]["lead_status"]
+          study_objectives: string | null
+          study_topics: string[] | null
+          transport_preference: string | null
+          travel_date_end: string | null
+          travel_date_start: string | null
+          updated_at: string
+        }
+        Insert: {
+          accommodation_level?: string | null
+          ai_generated_program?: Json | null
+          assigned_to?: string | null
+          budget_per_person?: number | null
+          contact_email?: string | null
+          contact_line_id?: string | null
+          contact_name: string
+          contact_phone: string
+          created_at?: string
+          destination: string
+          id?: string
+          meal_preference?: string | null
+          notes?: string | null
+          num_travelers?: number
+          org_name: string
+          org_type?: Database["public"]["Enums"]["org_type"]
+          preferred_visits?: string | null
+          special_requests?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          study_objectives?: string | null
+          study_topics?: string[] | null
+          transport_preference?: string | null
+          travel_date_end?: string | null
+          travel_date_start?: string | null
+          updated_at?: string
+        }
+        Update: {
+          accommodation_level?: string | null
+          ai_generated_program?: Json | null
+          assigned_to?: string | null
+          budget_per_person?: number | null
+          contact_email?: string | null
+          contact_line_id?: string | null
+          contact_name?: string
+          contact_phone?: string
+          created_at?: string
+          destination?: string
+          id?: string
+          meal_preference?: string | null
+          notes?: string | null
+          num_travelers?: number
+          org_name?: string
+          org_type?: Database["public"]["Enums"]["org_type"]
+          preferred_visits?: string | null
+          special_requests?: string | null
+          status?: Database["public"]["Enums"]["lead_status"]
+          study_objectives?: string | null
+          study_topics?: string[] | null
+          transport_preference?: string | null
+          travel_date_end?: string | null
+          travel_date_start?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quotations: {
+        Row: {
+          created_at: string
+          custom_itinerary: Json | null
+          id: string
+          lead_id: string | null
+          notes: string | null
+          num_travelers: number
+          price_per_person: number
+          quotation_number: string
+          status: string
+          total_amount: number
+          tour_program_id: string | null
+          updated_at: string
+          valid_until: string | null
+        }
+        Insert: {
+          created_at?: string
+          custom_itinerary?: Json | null
+          id?: string
+          lead_id?: string | null
+          notes?: string | null
+          num_travelers: number
+          price_per_person: number
+          quotation_number: string
+          status?: string
+          total_amount: number
+          tour_program_id?: string | null
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Update: {
+          created_at?: string
+          custom_itinerary?: Json | null
+          id?: string
+          lead_id?: string | null
+          notes?: string | null
+          num_travelers?: number
+          price_per_person?: number
+          quotation_number?: string
+          status?: string
+          total_amount?: number
+          tour_program_id?: string | null
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quotations_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quotations_tour_program_id_fkey"
+            columns: ["tour_program_id"]
+            isOneToOne: false
+            referencedRelation: "tour_programs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tour_programs: {
+        Row: {
+          airline: string | null
+          code: string
+          country: string
+          created_at: string
+          days: number
+          destination: string
+          excluded: string[] | null
+          highlights: string[] | null
+          id: string
+          image_url: string | null
+          included: string[] | null
+          itinerary: Json | null
+          name: string
+          nights: number
+          notes: string | null
+          price_per_person: number | null
+          status: Database["public"]["Enums"]["tour_status"]
+          updated_at: string
+        }
+        Insert: {
+          airline?: string | null
+          code: string
+          country: string
+          created_at?: string
+          days: number
+          destination: string
+          excluded?: string[] | null
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          included?: string[] | null
+          itinerary?: Json | null
+          name: string
+          nights: number
+          notes?: string | null
+          price_per_person?: number | null
+          status?: Database["public"]["Enums"]["tour_status"]
+          updated_at?: string
+        }
+        Update: {
+          airline?: string | null
+          code?: string
+          country?: string
+          created_at?: string
+          days?: number
+          destination?: string
+          excluded?: string[] | null
+          highlights?: string[] | null
+          id?: string
+          image_url?: string | null
+          included?: string[] | null
+          itinerary?: Json | null
+          name?: string
+          nights?: number
+          notes?: string | null
+          price_per_person?: number | null
+          status?: Database["public"]["Enums"]["tour_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +232,20 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      lead_status:
+        | "new"
+        | "contacted"
+        | "proposal_sent"
+        | "negotiating"
+        | "won"
+        | "lost"
+      org_type:
+        | "government"
+        | "corporate"
+        | "education"
+        | "association"
+        | "other"
+      tour_status: "draft" | "active" | "archived"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +372,23 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      lead_status: [
+        "new",
+        "contacted",
+        "proposal_sent",
+        "negotiating",
+        "won",
+        "lost",
+      ],
+      org_type: [
+        "government",
+        "corporate",
+        "education",
+        "association",
+        "other",
+      ],
+      tour_status: ["draft", "active", "archived"],
+    },
   },
 } as const
