@@ -40,7 +40,12 @@ const studyTopicOptions = [
 const accommodationLevels = ["ประหยัด (3 ดาว)", "สแตนดาร์ด (4 ดาว)", "พรีเมี่ยม (5 ดาว)"];
 const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น", "ไม่แน่ใจ"];
 
-export default function BookingPage() {
+const tripTypes = [
+  { value: "group", label: "กรุ๊ปทัวร์", icon: UsersRound, desc: "จัดกรุ๊ปส่วนตัว" },
+  { value: "solo", label: "ทริปเดี่ยว", icon: UserRound, desc: "เดินทางคนเดียว" },
+  { value: "join", label: "จอยทริป", icon: Users, desc: "ร่วมกรุ๊ปที่เปิดรับ" },
+];
+
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
