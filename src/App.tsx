@@ -79,6 +79,21 @@ const App = () => (
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/admin/quotations"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <QuotationsListPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/quotations/:id"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <QuotationPreviewPage />
+                  </ProtectedRoute>
+                }
 
               {/* Customer routes — lazy + protected */}
               <Route
