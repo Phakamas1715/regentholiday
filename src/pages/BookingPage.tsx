@@ -324,14 +324,14 @@ export default function BookingPage() {
               <div className="space-y-4">
                 <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">👥 จำนวนผู้เดินทาง</h3>
                 <p className="font-body text-sm text-muted-foreground">แตะเลือกจำนวน หรือกด +/- ปรับเอง</p>
-                <div className="flex flex-wrap gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
                   {travelerPresets.map((n) => (
                     <button
                       key={n}
                       type="button"
                       onClick={() => setTravelers(n)}
                       className={cn(
-                        "rounded-xl border-2 px-5 py-3 font-heading text-lg font-bold transition-all active:scale-95",
+                        "rounded-xl border-2 px-3 py-4 font-heading text-base sm:text-lg font-bold transition-all active:scale-[0.97] min-h-[52px]",
                         travelers === n
                           ? "border-primary bg-primary/10 text-primary shadow-md"
                           : "border-border text-foreground hover:border-primary/50"
@@ -341,15 +341,17 @@ export default function BookingPage() {
                     </button>
                   ))}
                 </div>
-                <div className="flex items-center gap-4 bg-card rounded-2xl border border-border p-4">
-                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.max(1, travelers - 5))} className="h-12 w-12 rounded-full text-lg">
-                    <Minus className="h-5 w-5" />
+                <div className="flex items-center justify-center gap-6 bg-card rounded-2xl border border-border p-5">
+                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.max(1, travelers - 5))} className="h-14 w-14 rounded-full text-lg shrink-0">
+                    <Minus className="h-6 w-6" />
                   </Button>
-                  <span className="font-heading text-3xl font-bold text-foreground flex-1 text-center">{travelers}</span>
-                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.min(200, travelers + 5))} className="h-12 w-12 rounded-full text-lg">
-                    <Plus className="h-5 w-5" />
+                  <div className="text-center">
+                    <span className="font-heading text-4xl font-bold text-foreground">{travelers}</span>
+                    <p className="font-body text-sm text-muted-foreground">คน</p>
+                  </div>
+                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.min(200, travelers + 5))} className="h-14 w-14 rounded-full text-lg shrink-0">
+                    <Plus className="h-6 w-6" />
                   </Button>
-                  <span className="font-body text-lg text-muted-foreground">คน</span>
                 </div>
               </div>
             )}
