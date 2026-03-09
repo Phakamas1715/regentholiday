@@ -1,6 +1,6 @@
 // Navbar component
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, User, Shield } from "lucide-react";
+import { Menu, X, LogOut, User, Shield, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
