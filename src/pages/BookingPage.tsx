@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import heroImage from "@/assets/hero-travel.jpg";
+import heroImage from "@/assets/hero-international.jpg";
 
 const destinations = [
   "เซี่ยงไฮ้ (จีน)", "ปักกิ่ง (จีน)", "กวางโจว (จีน)", "โตเกียว (ญี่ปุ่น)", "โอซาก้า (ญี่ปุ่น)",
