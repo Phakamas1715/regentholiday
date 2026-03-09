@@ -80,6 +80,10 @@ export default function BookingPage() {
       toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, องค์กร, ปลายทาง)");
       return;
     }
+    if (!pdpaConsent) {
+      toast.error("กรุณายินยอมนโยบายความเป็นส่วนตัว (PDPA) ก่อนส่งข้อมูล");
+      return;
+    }
 
     setIsSubmitting(true);
     try {
