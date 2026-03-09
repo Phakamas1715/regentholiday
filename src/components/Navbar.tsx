@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { MapPin, Menu, X, Sparkles } from "lucide-react";
+import { Globe, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -18,9 +18,8 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 font-heading font-bold text-xl text-foreground">
-          <MapPin className="h-6 w-6 text-primary" />
-          <span>TripAI</span>
-          <Sparkles className="h-4 w-4 text-accent" />
+          <Globe className="h-6 w-6 text-primary" />
+          <span>Regent Holiday</span>
         </Link>
 
         {/* Desktop nav */}

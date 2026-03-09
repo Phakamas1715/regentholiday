@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
@@ -17,13 +16,14 @@ import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-travel.jpg";
 
 const destinations = [
-  "เชียงใหม่", "เชียงราย", "กระบี่", "ภูเก็ต", "เกาะสมุย",
-  "พัทยา", "หัวหิน", "เขาใหญ่", "กาญจนบุรี", "น่าน",
+  "เซี่ยงไฮ้ (จีน)", "ปักกิ่ง (จีน)", "โตเกียว (ญี่ปุ่น)", "โอซาก้า (ญี่ปุ่น)",
+  "โซล (เกาหลีใต้)", "ไทเป (ไต้หวัน)", "ฮานอย (เวียดนาม)", "สิงคโปร์",
+  "ฮ่องกง", "ลอนดอน (อังกฤษ)", "ปารีส (ฝรั่งเศส)", "โรม (อิตาลี)",
 ];
 
 const tripStyles = ["ผจญภัย", "พักผ่อน", "วัฒนธรรม", "ธรรมชาติ", "อาหาร", "ถ่ายรูป"];
 const hotelLevels = ["ประหยัด", "สแตนดาร์ด", "พรีเมี่ยม", "ลักชัวรี่"];
-const transports = ["เครื่องบิน", "รถตู้", "รถไฟ", "รถทัวร์"];
+const transports = ["เครื่องบิน", "เครื่องบิน + รถไฟ", "เครื่องบิน + รถบัส"];
 const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น", "ไม่รวมอาหาร"];
 
 export default function BookingPage() {
@@ -32,7 +32,7 @@ export default function BookingPage() {
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const [travelers, setTravelers] = useState(2);
-  const [budget, setBudget] = useState([30000]);
+  const [budget, setBudget] = useState([40000]);
   const [selectedStyles, setSelectedStyles] = useState<string[]>([]);
   const [hotelLevel, setHotelLevel] = useState("");
   const [transport, setTransport] = useState("");
@@ -50,14 +50,14 @@ export default function BookingPage() {
       <div className="pt-16 min-h-screen flex flex-col lg:flex-row">
         {/* Left image panel */}
         <div className="hidden lg:block lg:w-2/5 relative">
-          <img src={heroImage} alt="ทะเล" className="w-full h-full object-cover sticky top-0" />
+          <img src={heroImage} alt="ทัวร์ต่างประเทศ" className="w-full h-full object-cover sticky top-0" />
           <div className="absolute inset-0 bg-gradient-hero opacity-40" />
           <div className="absolute bottom-12 left-8 right-8 z-10">
             <h2 className="font-heading text-3xl font-bold text-primary-foreground mb-2">
               บอกเราเกี่ยวกับทริปในฝัน
             </h2>
             <p className="font-body text-primary-foreground/80 text-lg">
-              กรอกข้อมูลแล้วให้ AI จัดโปรแกรมให้คุณ
+              กรอกข้อมูลแล้วให้เราจัดโปรแกรมทัวร์ต่างประเทศให้คุณ
             </p>
           </div>
         </div>
@@ -66,8 +66,8 @@ export default function BookingPage() {
         <div className="flex-1 p-6 md:p-12 lg:p-16 overflow-y-auto max-h-screen">
           <div className="max-w-xl mx-auto space-y-8">
             <div>
-              <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-1">จองทัวร์</h1>
-              <p className="font-body text-muted-foreground">กรอกรายละเอียดเพื่อให้ AI ออกแบบทริปที่เหมาะกับคุณ</p>
+              <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-1">จองทัวร์ต่างประเทศ</h1>
+              <p className="font-body text-muted-foreground">กรอกรายละเอียดเพื่อให้เราออกแบบทริปที่เหมาะกับคุณ</p>
             </div>
 
             {/* Destination */}
@@ -82,7 +82,7 @@ export default function BookingPage() {
                 </SelectContent>
               </Select>
               <div className="flex flex-wrap gap-2">
-                {["เชียงใหม่", "กระบี่", "ภูเก็ต", "เกาะสมุย"].map((d) => (
+                {["เซี่ยงไฮ้ (จีน)", "โตเกียว (ญี่ปุ่น)", "โซล (เกาหลีใต้)", "ปารีส (ฝรั่งเศส)"].map((d) => (
                   <Badge
                     key={d}
                     variant={destination === d ? "default" : "outline"}
@@ -149,11 +149,11 @@ export default function BookingPage() {
                 <Wallet className="h-4 w-4" />
                 งบประมาณ
               </Label>
-              <Slider value={budget} onValueChange={setBudget} min={10000} max={100000} step={5000} className="mt-2" />
+              <Slider value={budget} onValueChange={setBudget} min={15000} max={200000} step={5000} className="mt-2" />
               <div className="flex justify-between font-body text-sm text-muted-foreground">
-                <span>฿10,000</span>
+                <span>฿15,000</span>
                 <span className="text-primary font-semibold text-lg">฿{budget[0].toLocaleString()}</span>
-                <span>฿100,000</span>
+                <span>฿200,000</span>
               </div>
             </div>
 
@@ -211,7 +211,7 @@ export default function BookingPage() {
             <div className="space-y-2">
               <Label className="font-heading font-semibold">คำขอพิเศษ</Label>
               <Textarea
-                placeholder="เช่น ต้องการห้องพักวิวทะเล, มีเด็กเล็กร่วมเดินทาง..."
+                placeholder="เช่น ต้องการห้องพักวิวเมือง, มีเด็กเล็กร่วมเดินทาง, ต้องการอาหารฮาลาล..."
                 value={specialRequest}
                 onChange={(e) => setSpecialRequest(e.target.value)}
                 rows={3}
@@ -221,7 +221,7 @@ export default function BookingPage() {
             {/* Submit */}
             <Button variant="hero" size="lg" className="w-full text-lg py-6" onClick={handleSubmit}>
               <Sparkles className="mr-2 h-5 w-5" />
-              ให้ AI ออกแบบโปรแกรมทัวร์
+              ค้นหาแพ็คเกจทัวร์
             </Button>
           </div>
         </div>
