@@ -182,9 +182,9 @@ export default function BookingPage() {
           </div>
         </div>
 
-        {/* Right form panel */}
-        <div className="flex-1 p-6 md:p-12 lg:p-16 overflow-y-auto max-h-screen">
-          <div className="max-w-xl mx-auto space-y-10">
+        {/* Right form panel — mobile-first: generous padding, smooth scroll */}
+        <div className="flex-1 p-4 sm:p-6 md:p-12 lg:p-16 overflow-y-auto max-h-screen scroll-smooth">
+          <div className="max-w-xl mx-auto space-y-8 sm:space-y-10">
             <div>
               <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">ขอใบเสนอราคา</h1>
               <p className="font-body text-muted-foreground text-base">แค่เลือกตัวเลือก แล้วกรอกข้อมูลติดต่อ ทีมงานจัดให้ภายใน 24 ชม.</p>
@@ -193,22 +193,22 @@ export default function BookingPage() {
             {/* === Trip Type === */}
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">✈️ ประเภททริป</h3>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {tripTypes.map((t) => (
                   <button
                     key={t.value}
                     type="button"
                     onClick={() => setTripType(t.value)}
                     className={cn(
-                      "rounded-2xl border-2 p-4 text-center transition-all active:scale-95",
+                      "rounded-2xl border-2 p-3 sm:p-4 text-center transition-all active:scale-[0.97]",
                       tripType === t.value
                         ? "border-primary bg-primary/10 shadow-md"
                         : "border-border hover:border-primary/50"
                     )}
                   >
-                    <t.icon className={cn("h-7 w-7 mx-auto mb-2", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
-                    <p className="font-heading text-base font-semibold">{t.label}</p>
-                    <p className="font-body text-xs text-muted-foreground mt-1">{t.desc}</p>
+                    <t.icon className={cn("h-8 w-8 mx-auto mb-2", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
+                    <p className="font-heading text-sm sm:text-base font-semibold">{t.label}</p>
+                    <p className="font-body text-[11px] sm:text-xs text-muted-foreground mt-1">{t.desc}</p>
                   </button>
                 ))}
               </div>
@@ -218,14 +218,14 @@ export default function BookingPage() {
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🌍 ปลายทาง</h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกปลายทางที่ต้องการ</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
                 {popularDestinations.map((d) => (
                   <button
                     key={d}
                     type="button"
                     onClick={() => { setDestination(d); setCustomDestination(""); }}
                     className={cn(
-                      "rounded-xl border-2 px-4 py-4 text-center font-body text-base font-medium transition-all active:scale-95",
+                      "rounded-xl border-2 px-3 py-4 sm:px-4 sm:py-5 text-center font-body text-sm sm:text-base font-medium transition-all active:scale-[0.97] min-h-[52px]",
                       destination === d
                         ? "border-primary bg-primary/10 text-primary shadow-md"
                         : "border-border text-foreground hover:border-primary/50"
@@ -238,7 +238,7 @@ export default function BookingPage() {
                   type="button"
                   onClick={() => setDestination("__other__")}
                   className={cn(
-                    "rounded-xl border-2 border-dashed px-4 py-4 text-center font-body text-base font-medium transition-all active:scale-95",
+                    "rounded-xl border-2 border-dashed px-3 py-4 sm:px-4 sm:py-5 text-center font-body text-sm sm:text-base font-medium transition-all active:scale-[0.97] min-h-[52px]",
                     destination === "__other__"
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border text-muted-foreground hover:border-primary/50"
@@ -287,7 +287,7 @@ export default function BookingPage() {
             {/* === Dates === */}
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📅 วันเดินทาง</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="font-heading font-semibold text-base">วันไป</Label>
                   <Popover>
@@ -324,14 +324,14 @@ export default function BookingPage() {
               <div className="space-y-4">
                 <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">👥 จำนวนผู้เดินทาง</h3>
                 <p className="font-body text-sm text-muted-foreground">แตะเลือกจำนวน หรือกด +/- ปรับเอง</p>
-                <div className="flex flex-wrap gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
                   {travelerPresets.map((n) => (
                     <button
                       key={n}
                       type="button"
                       onClick={() => setTravelers(n)}
                       className={cn(
-                        "rounded-xl border-2 px-5 py-3 font-heading text-lg font-bold transition-all active:scale-95",
+                        "rounded-xl border-2 px-3 py-4 font-heading text-base sm:text-lg font-bold transition-all active:scale-[0.97] min-h-[52px]",
                         travelers === n
                           ? "border-primary bg-primary/10 text-primary shadow-md"
                           : "border-border text-foreground hover:border-primary/50"
@@ -341,15 +341,17 @@ export default function BookingPage() {
                     </button>
                   ))}
                 </div>
-                <div className="flex items-center gap-4 bg-card rounded-2xl border border-border p-4">
-                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.max(1, travelers - 5))} className="h-12 w-12 rounded-full text-lg">
-                    <Minus className="h-5 w-5" />
+                <div className="flex items-center justify-center gap-6 bg-card rounded-2xl border border-border p-5">
+                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.max(1, travelers - 5))} className="h-14 w-14 rounded-full text-lg shrink-0">
+                    <Minus className="h-6 w-6" />
                   </Button>
-                  <span className="font-heading text-3xl font-bold text-foreground flex-1 text-center">{travelers}</span>
-                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.min(200, travelers + 5))} className="h-12 w-12 rounded-full text-lg">
-                    <Plus className="h-5 w-5" />
+                  <div className="text-center">
+                    <span className="font-heading text-4xl font-bold text-foreground">{travelers}</span>
+                    <p className="font-body text-sm text-muted-foreground">คน</p>
+                  </div>
+                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.min(200, travelers + 5))} className="h-14 w-14 rounded-full text-lg shrink-0">
+                    <Plus className="h-6 w-6" />
                   </Button>
-                  <span className="font-body text-lg text-muted-foreground">คน</span>
                 </div>
               </div>
             )}
@@ -360,14 +362,14 @@ export default function BookingPage() {
                 <Wallet className="inline h-5 w-5 mr-1" /> งบประมาณต่อคน
               </h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกงบ หรือเลื่อนปรับเอง</p>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                 {budgetPresets.map((b) => (
                   <button
                     key={b.value}
                     type="button"
                     onClick={() => setBudget([b.value])}
                     className={cn(
-                      "rounded-xl border-2 px-5 py-3 font-heading text-base font-bold transition-all active:scale-95",
+                      "rounded-xl border-2 px-4 py-4 font-heading text-base font-bold transition-all active:scale-[0.97] min-h-[52px]",
                       budget[0] === b.value
                         ? "border-primary bg-primary/10 text-primary shadow-md"
                         : "border-border text-foreground hover:border-primary/50"
@@ -422,14 +424,14 @@ export default function BookingPage() {
               <div className="space-y-4">
                 <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📚 หัวข้อศึกษาดูงาน</h3>
                 <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายหัวข้อ</p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
                   {studyTopicOptions.map((t) => (
                     <button
                       key={t}
                       type="button"
                       onClick={() => toggleTopic(t)}
                       className={cn(
-                        "rounded-xl border-2 px-3 py-3 font-body text-base text-center transition-all active:scale-95",
+                        "rounded-xl border-2 px-3 py-4 font-body text-base text-center transition-all active:scale-[0.97] min-h-[52px]",
                         selectedTopics.includes(t)
                           ? "border-primary bg-primary/10 text-primary shadow-md"
                           : "border-border text-foreground hover:border-primary/50"
@@ -494,20 +496,21 @@ export default function BookingPage() {
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">💬 คำขอพิเศษ <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายข้อ</p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                 {specialRequestOptions.map((r) => (
                   <button
                     key={r}
                     type="button"
                     onClick={() => toggleSpecialReq(r)}
                     className={cn(
-                      "rounded-xl border-2 px-4 py-3 font-body text-base text-left transition-all active:scale-95",
+                      "rounded-xl border-2 px-4 py-4 font-body text-base text-left transition-all active:scale-[0.97] min-h-[52px] flex items-center gap-2",
                       selectedSpecialRequests.includes(r)
                         ? "border-primary bg-primary/10 text-primary shadow-md"
                         : "border-border text-foreground hover:border-primary/50"
                     )}
                   >
-                    {selectedSpecialRequests.includes(r) ? "✅ " : ""}{r}
+                    <span className="text-lg">{selectedSpecialRequests.includes(r) ? "✅" : "⬜"}</span>
+                    {r}
                   </button>
                 ))}
               </div>
@@ -556,15 +559,17 @@ export default function BookingPage() {
               </label>
             </div>
 
-            {/* Submit */}
-            <Button variant="hero" size="lg" className="w-full text-xl py-7 rounded-2xl" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
-              {isSubmitting ? (
-                <Loader2 className="mr-2 h-6 w-6 animate-spin" />
-              ) : (
-                <Send className="mr-2 h-6 w-6" />
-              )}
-              {isSubmitting ? "กำลังส่ง..." : "ส่งคำขอใบเสนอราคา"}
-            </Button>
+            {/* Submit — sticky on mobile for easy access */}
+            <div className="sticky bottom-0 bg-background pt-4 pb-6 -mx-4 px-4 sm:static sm:mx-0 sm:px-0 sm:pt-0 sm:pb-0 border-t border-border/50 sm:border-0">
+              <Button variant="hero" size="lg" className="w-full text-xl py-7 rounded-2xl" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
+                {isSubmitting ? (
+                  <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                ) : (
+                  <Send className="mr-2 h-6 w-6" />
+                )}
+                {isSubmitting ? "กำลังส่ง..." : "ส่งคำขอใบเสนอราคา"}
+              </Button>
+            </div>
 
             <p className="text-center font-body text-sm text-muted-foreground pb-8">
               ทีมงาน Regent Holiday จะติดต่อกลับภายใน 24 ชั่วโมง ทางโทรศัพท์หรือ LINE
