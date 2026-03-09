@@ -11,8 +11,9 @@ import logoImg from "@/assets/logo-regent.png";
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "จัดการ Lead", path: "/admin" },
-  { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
+  { icon: Receipt, label: "ใบเสนอราคา", path: "/admin/quotations" },
   { icon: FileText, label: "โปรแกรมทัวร์", path: "/admin/programs" },
+  { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
   { icon: Settings, label: "ตั้งค่า", path: "/admin/settings" },
 ];
 
