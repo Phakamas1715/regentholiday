@@ -7,6 +7,9 @@ import Index from "./pages/Index.tsx";
 import BookingPage from "./pages/BookingPage.tsx";
 import PackagesPage from "./pages/PackagesPage.tsx";
 import ItineraryPage from "./pages/ItineraryPage.tsx";
+import AdminDashboard from "./pages/AdminDashboard.tsx";
+import CustomerDashboard from "./pages/CustomerDashboard.tsx";
+import AnalyticsDashboard from "./pages/AnalyticsDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -22,6 +25,9 @@ const App = () => (
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/itinerary" element={<ItineraryPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/my-bookings" element={<CustomerDashboard />} />
+          <Route path="/analytics" element={<AnalyticsDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
