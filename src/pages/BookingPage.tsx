@@ -85,8 +85,13 @@ export default function BookingPage() {
 
   const handleSubmit = async () => {
     const finalDestination = destination === "__other__" ? customDestination : destination;
-    if (!contactName || !contactPhone || !orgName || !finalDestination) {
-      toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, องค์กร, ปลายทาง)");
+    const needsOrg = tripType === "group";
+    if (!contactName || !contactPhone || !finalDestination) {
+      toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, ปลายทาง)");
+      return;
+    }
+    if (needsOrg && !orgName) {
+      toast.error("กรุณากรอกชื่อหน่วยงาน/องค์กร");
       return;
     }
     if (!pdpaConsent) {
