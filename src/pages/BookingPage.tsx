@@ -10,7 +10,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Navbar } from "@/components/Navbar";
-import { CalendarIcon, Minus, Plus, Users, Wallet, Building2, GraduationCap, Send, Loader2 } from "lucide-react";
+import { CalendarIcon, Minus, Plus, Users, Wallet, Building2, GraduationCap, Send, Loader2, UserRound, UsersRound } from "lucide-react";
 import { format } from "date-fns";
 import { th } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -40,6 +40,12 @@ const studyTopicOptions = [
 const accommodationLevels = ["ประหยัด (3 ดาว)", "สแตนดาร์ด (4 ดาว)", "พรีเมี่ยม (5 ดาว)"];
 const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น", "ไม่แน่ใจ"];
 
+const tripTypes = [
+  { value: "group", label: "กรุ๊ปทัวร์", icon: UsersRound, desc: "จัดกรุ๊ปส่วนตัว" },
+  { value: "solo", label: "ทริปเดี่ยว", icon: UserRound, desc: "เดินทางคนเดียว" },
+  { value: "join", label: "จอยทริป", icon: Users, desc: "ร่วมกรุ๊ปที่เปิดรับ" },
+];
+
 export default function BookingPage() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -55,6 +61,7 @@ export default function BookingPage() {
   const [orgType, setOrgType] = useState("");
 
   // Trip
+  const [tripType, setTripType] = useState("group");
   const [destination, setDestination] = useState("");
   const [customDestination, setCustomDestination] = useState("");
   const [startDate, setStartDate] = useState<Date>();
@@ -97,6 +104,7 @@ export default function BookingPage() {
         org_name: orgName,
         org_type: (orgType || "other") as any,
         destination: finalDestination,
+        transport_preference: tripType,
         travel_date_start: startDate ? format(startDate, "yyyy-MM-dd") : null,
         travel_date_end: endDate ? format(endDate, "yyyy-MM-dd") : null,
         num_travelers: travelers,
@@ -198,6 +206,28 @@ export default function BookingPage() {
             {/* === Section: Trip Details === */}
             <div className="space-y-4">
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">✈️ รายละเอียดทริป</h3>
+
+              <div className="space-y-2">
+                <Label className="font-heading font-semibold text-sm">ประเภททริป *</Label>
+                <div className="grid grid-cols-3 gap-2">
+                  {tripTypes.map((t) => (
+                    <div
+                      key={t.value}
+                      onClick={() => setTripType(t.value)}
+                      className={cn(
+                        "cursor-pointer rounded-xl border-2 p-3 text-center transition-all",
+                        tripType === t.value
+                          ? "border-primary bg-primary/10"
+                          : "border-border hover:border-primary/50"
+                      )}
+                    >
+                      <t.icon className={cn("h-5 w-5 mx-auto mb-1", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
+                      <p className="font-heading text-sm font-semibold">{t.label}</p>
+                      <p className="font-body text-xs text-muted-foreground">{t.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
               <div className="space-y-2">
                 <Label className="font-heading font-semibold text-sm">ปลายทาง *</Label>
