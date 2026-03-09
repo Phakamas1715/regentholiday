@@ -38,7 +38,7 @@ const studyTopicOptions = [
 ];
 
 const accommodationLevels = ["ประหยัด (3 ดาว)", "สแตนดาร์ด (4 ดาว)", "พรีเมี่ยม (5 ดาว)"];
-const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น"];
+const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น", "ไม่แน่ใจ"];
 
 export default function BookingPage() {
   const navigate = useNavigate();
@@ -56,6 +56,7 @@ export default function BookingPage() {
 
   // Trip
   const [destination, setDestination] = useState("");
+  const [customDestination, setCustomDestination] = useState("");
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
   const [travelers, setTravelers] = useState(30);
@@ -76,7 +77,8 @@ export default function BookingPage() {
     setSelectedTopics((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]);
 
   const handleSubmit = async () => {
-    if (!contactName || !contactPhone || !orgName || !destination) {
+    const finalDestination = destination === "__other__" ? customDestination : destination;
+    if (!contactName || !contactPhone || !orgName || !finalDestination) {
       toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, องค์กร, ปลายทาง)");
       return;
     }
@@ -94,7 +96,7 @@ export default function BookingPage() {
         contact_line_id: contactLineId || null,
         org_name: orgName,
         org_type: (orgType || "other") as any,
-        destination,
+        destination: finalDestination,
         travel_date_start: startDate ? format(startDate, "yyyy-MM-dd") : null,
         travel_date_end: endDate ? format(endDate, "yyyy-MM-dd") : null,
         num_travelers: travelers,
@@ -199,21 +201,30 @@ export default function BookingPage() {
 
               <div className="space-y-2">
                 <Label className="font-heading font-semibold text-sm">ปลายทาง *</Label>
-                <Select value={destination} onValueChange={setDestination}>
+                <Select value={destination} onValueChange={(val) => { setDestination(val); if (val !== "__other__") setCustomDestination(""); }}>
                   <SelectTrigger><SelectValue placeholder="เลือกจุดหมายปลายทาง" /></SelectTrigger>
                   <SelectContent>
                     {destinations.map((d) => (
                       <SelectItem key={d} value={d}>{d}</SelectItem>
                     ))}
+                    <SelectItem value="__other__">อื่นๆ (ระบุเอง)</SelectItem>
                   </SelectContent>
                 </Select>
+                {destination === "__other__" && (
+                  <Input
+                    placeholder="พิมพ์ปลายทางที่ต้องการ"
+                    value={customDestination}
+                    onChange={(e) => setCustomDestination(e.target.value)}
+                    className="mt-2"
+                  />
+                )}
                 <div className="flex flex-wrap gap-2">
                   {["เซี่ยงไฮ้ (จีน)", "โตเกียว (ญี่ปุ่น)", "โซล (เกาหลีใต้)"].map((d) => (
                     <Badge
                       key={d}
                       variant={destination === d ? "default" : "outline"}
                       className="cursor-pointer transition-colors"
-                      onClick={() => setDestination(d)}
+                      onClick={() => { setDestination(d); setCustomDestination(""); }}
                     >
                       {d}
                     </Badge>
@@ -324,9 +335,9 @@ export default function BookingPage() {
               </div>
             </div>
 
-            {/* === Section: Preferences === */}
+            {/* === Section: Preferences (optional) === */}
             <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">⚙️ ความต้องการเพิ่มเติม</h3>
+              <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">⚙️ ความต้องการเพิ่มเติม <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="font-heading font-semibold text-sm">ระดับที่พัก</Label>
