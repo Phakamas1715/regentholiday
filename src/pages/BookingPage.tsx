@@ -96,7 +96,7 @@ export default function BookingPage() {
         contact_line_id: contactLineId || null,
         org_name: orgName,
         org_type: (orgType || "other") as any,
-        destination,
+        destination: finalDestination,
         travel_date_start: startDate ? format(startDate, "yyyy-MM-dd") : null,
         travel_date_end: endDate ? format(endDate, "yyyy-MM-dd") : null,
         num_travelers: travelers,
