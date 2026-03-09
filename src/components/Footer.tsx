@@ -6,10 +6,10 @@ export function Footer() {
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
           {/* Company Info */}
           <div className="space-y-4">
-            <img src={logoImg} alt="Regent Holidays" className="h-12 object-contain" />
+            <img src={logoImg} alt="Regent Holidays" className="h-12 object-contain mx-auto md:mx-0" />
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               Regent Holidays Co., Ltd.
               <br />
@@ -17,7 +17,7 @@ export function Footer() {
               <br />
               ทั้งทริปส่วนตัว ครอบครัว และกรุ๊ปองค์กร
             </p>
-            <div className="flex items-start gap-2 text-xs text-muted-foreground">
+            <div className="flex items-start gap-2 text-xs text-muted-foreground justify-center md:justify-start">
               <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
               <span>
                 3/85 Prachanivej Prime Square 1, 7th FL., Tessabannimitnue Rd., Lardyao, Jatujak, Bangkok 10900
@@ -31,7 +31,7 @@ export function Footer() {
             <div className="space-y-3">
               <a
                 href="tel:0616351491"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors justify-center md:justify-start"
               >
                 <Phone className="h-4 w-4" />
                 061-635-1491 (คุณนิค)
@@ -40,7 +40,7 @@ export function Footer() {
                 href="https://line.me/R/ti/p/@ugm3067r"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors justify-center md:justify-start"
               >
                 <MessageCircle className="h-4 w-4" />
                 แอดไลน์เพื่อปรึกษา
@@ -51,14 +51,14 @@ export function Footer() {
             <div className="space-y-3">
               <a
                 href="tel:0629692917"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors justify-center md:justify-start"
               >
                 <Phone className="h-4 w-4" />
                 062-969-2917 (คุณศรี)
               </a>
               <a
                 href="mailto:kraiwitch.pawadee@regentholiday.com"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors justify-center md:justify-start"
               >
                 <Mail className="h-4 w-4" />
                 kraiwitch.pawadee@regentholiday.com
@@ -101,7 +101,7 @@ export function Footer() {
           {/* Office Hours & FAQ */}
           <div className="space-y-4">
             <h3 className="font-heading font-semibold text-foreground">เวลาทำการ</h3>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground justify-center md:justify-start">
               <Clock className="h-4 w-4" />
               จันทร์–ศุกร์ 09:00–18:00 น.
             </div>
