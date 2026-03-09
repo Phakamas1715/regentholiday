@@ -545,6 +545,7 @@ export default function PackagesPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
