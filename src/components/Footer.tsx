@@ -101,7 +101,7 @@ export function Footer() {
           {/* Office Hours & FAQ */}
           <div className="space-y-4">
             <h3 className="font-heading font-semibold text-foreground">เวลาทำการ</h3>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground justify-center md:justify-start">
               <Clock className="h-4 w-4" />
               จันทร์–ศุกร์ 09:00–18:00 น.
             </div>
