@@ -3,14 +3,13 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Navbar } from "@/components/Navbar";
-import { CalendarIcon, Minus, Plus, Users, Wallet, Building2, GraduationCap, Send, Loader2, UserRound, UsersRound } from "lucide-react";
+import { Footer } from "@/components/Footer";
+import { CalendarIcon, Minus, Plus, Users, Wallet, Building2, GraduationCap, Send, Loader2, UserRound, UsersRound, Phone, Mail, MessageCircle } from "lucide-react";
 import { format } from "date-fns";
 import { th } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -25,20 +24,44 @@ const destinations = [
   "ฮ่องกง", "ลอนดอน (อังกฤษ)", "ปารีส (ฝรั่งเศส)", "โรม (อิตาลี)",
 ];
 
+const popularDestinations = [
+  "เซี่ยงไฮ้ (จีน)", "โตเกียว (ญี่ปุ่น)", "โซล (เกาหลีใต้)", "ไทเป (ไต้หวัน)", "ฮานอย (เวียดนาม)", "สิงคโปร์",
+];
+
 const orgTypes = [
-  { value: "government", label: "หน่วยงานราชการ", icon: Building2 },
-  { value: "corporate", label: "บริษัทเอกชน", icon: Building2 },
-  { value: "education", label: "สถาบันการศึกษา", icon: GraduationCap },
+  { value: "government", label: "ราชการ", icon: Building2 },
+  { value: "corporate", label: "เอกชน", icon: Building2 },
+  { value: "education", label: "การศึกษา", icon: GraduationCap },
   { value: "association", label: "สมาคม/ชมรม", icon: Users },
+  { value: "other", label: "อื่นๆ", icon: Users },
 ];
 
 const studyTopicOptions = [
-  "เทคโนโลยี/นวัตกรรม", "การศึกษา", "สาธารณสุข/การแพทย์", "เกษตรกรรม",
-  "อุตสาหกรรม/การผลิต", "การท่องเที่ยว/บริการ", "พลังงาน/สิ่งแวดล้อม", "การปกครอง/บริหาร",
+  "เทคโนโลยี", "การศึกษา", "สาธารณสุข", "เกษตรกรรม",
+  "อุตสาหกรรม", "การท่องเที่ยว", "พลังงาน/สิ่งแวดล้อม", "การปกครอง",
 ];
 
-const accommodationLevels = ["ประหยัด (3 ดาว)", "สแตนดาร์ด (4 ดาว)", "พรีเมี่ยม (5 ดาว)"];
-const mealPrefs = ["ทุกมื้อ", "เช้า-เย็น", "เช้าเท่านั้น", "ไม่แน่ใจ"];
+const accommodationLevels = [
+  { value: "ประหยัด (3 ดาว)", label: "3 ดาว", desc: "ประหยัด" },
+  { value: "สแตนดาร์ด (4 ดาว)", label: "4 ดาว", desc: "สแตนดาร์ด" },
+  { value: "พรีเมี่ยม (5 ดาว)", label: "5 ดาว", desc: "พรีเมี่ยม" },
+];
+
+const mealPrefs = [
+  { value: "ทุกมื้อ", label: "ทุกมื้อ" },
+  { value: "เช้า-เย็น", label: "เช้า-เย็น" },
+  { value: "เช้าเท่านั้น", label: "เช้าอย่างเดียว" },
+  { value: "ไม่แน่ใจ", label: "ไม่แน่ใจ" },
+];
+
+const specialRequestOptions = [
+  "มีผู้สูงอายุร่วมคณะ",
+  "ต้องการล่ามภาษา",
+  "ต้องการรถวีลแชร์",
+  "อาหารฮาลาล",
+  "อาหารมังสวิรัติ",
+  "ต้องการใบเสนอราคาด่วน",
+];
 
 const tripTypes = [
   { value: "group", label: "กรุ๊ปทัวร์", icon: UsersRound, desc: "จัดกรุ๊ปส่วนตัว" },
@@ -46,21 +69,27 @@ const tripTypes = [
   { value: "join", label: "จอยทริป", icon: Users, desc: "ร่วมกรุ๊ปที่เปิดรับ" },
 ];
 
+const budgetPresets = [
+  { value: 20000, label: "฿20,000" },
+  { value: 30000, label: "฿30,000" },
+  { value: 50000, label: "฿50,000" },
+  { value: 80000, label: "฿80,000" },
+];
+
+const travelerPresets = [15, 20, 30, 40, 50];
+
 export default function BookingPage() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Contact
   const [contactName, setContactName] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactLineId, setContactLineId] = useState("");
 
-  // Organization
   const [orgName, setOrgName] = useState("");
   const [orgType, setOrgType] = useState("");
 
-  // Trip
   const [tripType, setTripType] = useState("group");
   const [destination, setDestination] = useState("");
   const [customDestination, setCustomDestination] = useState("");
@@ -69,19 +98,20 @@ export default function BookingPage() {
   const [travelers, setTravelers] = useState(30);
   const [budget, setBudget] = useState([25000]);
 
-  // Study
   const [studyObjectives, setStudyObjectives] = useState("");
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [preferredVisits, setPreferredVisits] = useState("");
 
-  // Preferences
   const [accommodation, setAccommodation] = useState("");
   const [meal, setMeal] = useState("");
-  const [specialRequest, setSpecialRequest] = useState("");
+  const [selectedSpecialRequests, setSelectedSpecialRequests] = useState<string[]>([]);
   const [pdpaConsent, setPdpaConsent] = useState(false);
 
   const toggleTopic = (t: string) =>
     setSelectedTopics((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]);
+
+  const toggleSpecialReq = (t: string) =>
+    setSelectedSpecialRequests((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]);
 
   const handleSubmit = async () => {
     const finalDestination = destination === "__other__" ? customDestination : destination;
@@ -119,12 +149,12 @@ export default function BookingPage() {
         preferred_visits: preferredVisits || null,
         accommodation_level: accommodation || null,
         meal_preference: meal || null,
-        special_requests: specialRequest || null,
+        special_requests: selectedSpecialRequests.length > 0 ? selectedSpecialRequests.join(", ") : null,
       });
 
       if (error) throw error;
 
-      toast.success("ส่งคำขอใบเสนอราคาเรียบร้อยแล้ว! ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง");
+      toast.success("ส่งคำขอเรียบร้อยแล้ว! ทีมงานจะติดต่อกลับภายใน 24 ชม.");
       navigate("/packages");
     } catch (err) {
       console.error(err);
@@ -144,139 +174,126 @@ export default function BookingPage() {
           <div className="absolute inset-0 bg-gradient-hero opacity-40" />
           <div className="absolute bottom-12 left-8 right-8 z-10">
             <h2 className="font-heading text-3xl font-bold text-primary-foreground mb-2">
-              ขอใบเสนอราคาทัวร์กรุ๊ป
+              ขอใบเสนอราคาทัวร์
             </h2>
             <p className="font-body text-primary-foreground/80 text-lg">
-              ศึกษาดูงานต่างประเทศ จัดได้ตามความต้องการ
+              แค่เลือก-แตะ ไม่ต้องพิมพ์มาก
             </p>
           </div>
         </div>
 
         {/* Right form panel */}
         <div className="flex-1 p-6 md:p-12 lg:p-16 overflow-y-auto max-h-screen">
-          <div className="max-w-xl mx-auto space-y-8">
+          <div className="max-w-xl mx-auto space-y-10">
             <div>
-              <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-1">ขอใบเสนอราคา</h1>
-              <p className="font-body text-muted-foreground">กรอกข้อมูลคณะของท่าน ทีมงานจะจัดโปรแกรมและเสนอราคาภายใน 24 ชม.</p>
+              <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">ขอใบเสนอราคา</h1>
+              <p className="font-body text-muted-foreground text-base">แค่เลือกตัวเลือก แล้วกรอกข้อมูลติดต่อ ทีมงานจัดให้ภายใน 24 ชม.</p>
             </div>
 
-            {/* === Section: Contact Info === */}
+            {/* === Trip Type === */}
             <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">📞 ข้อมูลผู้ติดต่อ</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">ชื่อ-สกุล *</Label>
-                  <Input placeholder="ชื่อผู้ประสานงาน" value={contactName} onChange={(e) => setContactName(e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">เบอร์โทรศัพท์ *</Label>
-                  <Input placeholder="08x-xxx-xxxx" value={contactPhone} onChange={(e) => setContactPhone(e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">อีเมล</Label>
-                  <Input type="email" placeholder="email@org.go.th" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">LINE ID</Label>
-                  <Input placeholder="@lineid" value={contactLineId} onChange={(e) => setContactLineId(e.target.value)} />
-                </div>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">✈️ ประเภททริป</h3>
+              <div className="grid grid-cols-3 gap-3">
+                {tripTypes.map((t) => (
+                  <button
+                    key={t.value}
+                    type="button"
+                    onClick={() => setTripType(t.value)}
+                    className={cn(
+                      "rounded-2xl border-2 p-4 text-center transition-all active:scale-95",
+                      tripType === t.value
+                        ? "border-primary bg-primary/10 shadow-md"
+                        : "border-border hover:border-primary/50"
+                    )}
+                  >
+                    <t.icon className={cn("h-7 w-7 mx-auto mb-2", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
+                    <p className="font-heading text-base font-semibold">{t.label}</p>
+                    <p className="font-body text-xs text-muted-foreground mt-1">{t.desc}</p>
+                  </button>
+                ))}
               </div>
             </div>
 
-            {/* === Section: Organization (group only) === */}
-            {tripType === "group" && (
+            {/* === Destination === */}
             <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">🏢 ข้อมูลองค์กร</h3>
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">ชื่อหน่วยงาน/องค์กร *</Label>
-                <Input placeholder="ชื่อหน่วยงาน" value={orgName} onChange={(e) => setOrgName(e.target.value)} />
-              </div>
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">ประเภทองค์กร</Label>
-                <div className="grid grid-cols-2 gap-2">
-                  {orgTypes.map((o) => (
-                    <Badge
-                      key={o.value}
-                      variant={orgType === o.value ? "default" : "outline"}
-                      className="cursor-pointer transition-all text-sm px-4 py-3 justify-center"
-                      onClick={() => setOrgType(o.value)}
-                    >
-                      <o.icon className="h-4 w-4 mr-1" />
-                      {o.label}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </div>
-            )}
-
-            {/* === Section: Trip Details === */}
-            <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">✈️ รายละเอียดทริป</h3>
-
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">ประเภททริป *</Label>
-                <div className="grid grid-cols-3 gap-2">
-                  {tripTypes.map((t) => (
-                    <div
-                      key={t.value}
-                      onClick={() => setTripType(t.value)}
-                      className={cn(
-                        "cursor-pointer rounded-xl border-2 p-3 text-center transition-all",
-                        tripType === t.value
-                          ? "border-primary bg-primary/10"
-                          : "border-border hover:border-primary/50"
-                      )}
-                    >
-                      <t.icon className={cn("h-5 w-5 mx-auto mb-1", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
-                      <p className="font-heading text-sm font-semibold">{t.label}</p>
-                      <p className="font-body text-xs text-muted-foreground">{t.desc}</p>
-                    </div>
-                  ))}
-                </div>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🌍 ปลายทาง</h3>
+              <p className="font-body text-sm text-muted-foreground">แตะเลือกปลายทางที่ต้องการ</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {popularDestinations.map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => { setDestination(d); setCustomDestination(""); }}
+                    className={cn(
+                      "rounded-xl border-2 px-4 py-4 text-center font-body text-base font-medium transition-all active:scale-95",
+                      destination === d
+                        ? "border-primary bg-primary/10 text-primary shadow-md"
+                        : "border-border text-foreground hover:border-primary/50"
+                    )}
+                  >
+                    {d}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => setDestination("__other__")}
+                  className={cn(
+                    "rounded-xl border-2 border-dashed px-4 py-4 text-center font-body text-base font-medium transition-all active:scale-95",
+                    destination === "__other__"
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-border text-muted-foreground hover:border-primary/50"
+                  )}
+                >
+                  อื่นๆ...
+                </button>
               </div>
 
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">ปลายทาง *</Label>
-                <Select value={destination} onValueChange={(val) => { setDestination(val); if (val !== "__other__") setCustomDestination(""); }}>
-                  <SelectTrigger><SelectValue placeholder="เลือกจุดหมายปลายทาง" /></SelectTrigger>
-                  <SelectContent>
-                    {destinations.map((d) => (
-                      <SelectItem key={d} value={d}>{d}</SelectItem>
+              {destination === "__other__" && (
+                <Input
+                  placeholder="พิมพ์ปลายทางที่ต้องการ"
+                  value={customDestination}
+                  onChange={(e) => setCustomDestination(e.target.value)}
+                  className="text-base h-12 rounded-xl"
+                />
+              )}
+
+              {!popularDestinations.includes(destination) && destination !== "__other__" && destination && (
+                <p className="font-body text-sm text-muted-foreground">หรือเลือกจากรายการเพิ่มเติม:</p>
+              )}
+              {destinations.filter(d => !popularDestinations.includes(d)).length > 0 && (
+                <details className="group">
+                  <summary className="font-body text-sm text-primary cursor-pointer hover:underline">ดูปลายทางทั้งหมด ({destinations.length} แห่ง)</summary>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3">
+                    {destinations.filter(d => !popularDestinations.includes(d)).map((d) => (
+                      <button
+                        key={d}
+                        type="button"
+                        onClick={() => { setDestination(d); setCustomDestination(""); }}
+                        className={cn(
+                          "rounded-xl border-2 px-3 py-3 text-center font-body text-sm transition-all active:scale-95",
+                          destination === d
+                            ? "border-primary bg-primary/10 text-primary shadow-md"
+                            : "border-border text-foreground hover:border-primary/50"
+                        )}
+                      >
+                        {d}
+                      </button>
                     ))}
-                    <SelectItem value="__other__">อื่นๆ (ระบุเอง)</SelectItem>
-                  </SelectContent>
-                </Select>
-                {destination === "__other__" && (
-                  <Input
-                    placeholder="พิมพ์ปลายทางที่ต้องการ"
-                    value={customDestination}
-                    onChange={(e) => setCustomDestination(e.target.value)}
-                    className="mt-2"
-                  />
-                )}
-                <div className="flex flex-wrap gap-2">
-                  {["เซี่ยงไฮ้ (จีน)", "โตเกียว (ญี่ปุ่น)", "โซล (เกาหลีใต้)"].map((d) => (
-                    <Badge
-                      key={d}
-                      variant={destination === d ? "default" : "outline"}
-                      className="cursor-pointer transition-colors"
-                      onClick={() => { setDestination(d); setCustomDestination(""); }}
-                    >
-                      {d}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
+                  </div>
+                </details>
+              )}
+            </div>
 
-              {/* Dates */}
+            {/* === Dates === */}
+            <div className="space-y-4">
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📅 วันเดินทาง</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">วันเดินทาง</Label>
+                  <Label className="font-heading font-semibold text-base">วันไป</Label>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button variant="outline" className={cn("w-full justify-start text-left", !startDate && "text-muted-foreground")}>
-                        <CalendarIcon className="mr-2 h-4 w-4" />
+                      <Button variant="outline" className={cn("w-full justify-start text-left h-12 rounded-xl text-base", !startDate && "text-muted-foreground")}>
+                        <CalendarIcon className="mr-2 h-5 w-5" />
                         {startDate ? format(startDate, "d MMM yyyy", { locale: th }) : "เลือกวัน"}
                       </Button>
                     </PopoverTrigger>
@@ -286,11 +303,11 @@ export default function BookingPage() {
                   </Popover>
                 </div>
                 <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">วันกลับ</Label>
+                  <Label className="font-heading font-semibold text-base">วันกลับ</Label>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button variant="outline" className={cn("w-full justify-start text-left", !endDate && "text-muted-foreground")}>
-                        <CalendarIcon className="mr-2 h-4 w-4" />
+                      <Button variant="outline" className={cn("w-full justify-start text-left h-12 rounded-xl text-base", !endDate && "text-muted-foreground")}>
+                        <CalendarIcon className="mr-2 h-5 w-5" />
                         {endDate ? format(endDate, "d MMM yyyy", { locale: th }) : "เลือกวัน"}
                       </Button>
                     </PopoverTrigger>
@@ -300,146 +317,262 @@ export default function BookingPage() {
                   </Popover>
                 </div>
               </div>
+            </div>
 
-              {/* Travelers (group only) */}
-              {tripType === "group" && (
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">จำนวนผู้เดินทาง (คน)</Label>
-                <div className="flex items-center gap-4 bg-card rounded-xl border border-border p-4">
-                  <Users className="h-5 w-5 text-muted-foreground" />
-                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.max(10, travelers - 5))} className="h-10 w-10 rounded-full">
-                    <Minus className="h-4 w-4" />
+            {/* === Travelers (group) === */}
+            {tripType === "group" && (
+              <div className="space-y-4">
+                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">👥 จำนวนผู้เดินทาง</h3>
+                <p className="font-body text-sm text-muted-foreground">แตะเลือกจำนวน หรือกด +/- ปรับเอง</p>
+                <div className="flex flex-wrap gap-3">
+                  {travelerPresets.map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setTravelers(n)}
+                      className={cn(
+                        "rounded-xl border-2 px-5 py-3 font-heading text-lg font-bold transition-all active:scale-95",
+                        travelers === n
+                          ? "border-primary bg-primary/10 text-primary shadow-md"
+                          : "border-border text-foreground hover:border-primary/50"
+                      )}
+                    >
+                      {n} คน
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center gap-4 bg-card rounded-2xl border border-border p-4">
+                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.max(1, travelers - 5))} className="h-12 w-12 rounded-full text-lg">
+                    <Minus className="h-5 w-5" />
                   </Button>
-                  <span className="font-heading text-2xl font-bold text-foreground w-16 text-center">{travelers}</span>
-                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.min(200, travelers + 5))} className="h-10 w-10 rounded-full">
-                    <Plus className="h-4 w-4" />
+                  <span className="font-heading text-3xl font-bold text-foreground flex-1 text-center">{travelers}</span>
+                  <Button variant="outline" size="icon" onClick={() => setTravelers(Math.min(200, travelers + 5))} className="h-12 w-12 rounded-full text-lg">
+                    <Plus className="h-5 w-5" />
                   </Button>
-                  <span className="font-body text-muted-foreground">คน</span>
+                  <span className="font-body text-lg text-muted-foreground">คน</span>
                 </div>
               </div>
-              )}
+            )}
 
-              {/* Budget */}
-              <div className="space-y-3">
-                <Label className="font-heading font-semibold text-sm flex items-center gap-2">
-                  <Wallet className="h-4 w-4" /> งบประมาณต่อคน
-                </Label>
-                <Slider value={budget} onValueChange={setBudget} min={15000} max={100000} step={5000} />
-                <div className="flex justify-between font-body text-sm text-muted-foreground">
-                  <span>฿15,000</span>
-                  <span className="text-primary font-semibold text-lg">฿{budget[0].toLocaleString()}</span>
-                  <span>฿100,000</span>
-                </div>
+            {/* === Budget === */}
+            <div className="space-y-4">
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">
+                <Wallet className="inline h-5 w-5 mr-1" /> งบประมาณต่อคน
+              </h3>
+              <p className="font-body text-sm text-muted-foreground">แตะเลือกงบ หรือเลื่อนปรับเอง</p>
+              <div className="flex flex-wrap gap-3">
+                {budgetPresets.map((b) => (
+                  <button
+                    key={b.value}
+                    type="button"
+                    onClick={() => setBudget([b.value])}
+                    className={cn(
+                      "rounded-xl border-2 px-5 py-3 font-heading text-base font-bold transition-all active:scale-95",
+                      budget[0] === b.value
+                        ? "border-primary bg-primary/10 text-primary shadow-md"
+                        : "border-border text-foreground hover:border-primary/50"
+                    )}
+                  >
+                    {b.label}
+                  </button>
+                ))}
+              </div>
+              <Slider value={budget} onValueChange={setBudget} min={15000} max={100000} step={5000} className="py-2" />
+              <div className="flex justify-between font-body text-sm text-muted-foreground">
+                <span>฿15,000</span>
+                <span className="text-primary font-heading font-bold text-xl">฿{budget[0].toLocaleString()}</span>
+                <span>฿100,000</span>
               </div>
             </div>
 
-            {/* === Section: Study Objectives (group only) === */}
+            {/* === Organization (group only) === */}
             {tripType === "group" && (
-            <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">📚 วัตถุประสงค์ศึกษาดูงาน</h3>
-
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">วัตถุประสงค์หลัก</Label>
-                <Textarea
-                  placeholder="เช่น ศึกษาดูงานด้านเทคโนโลยีการศึกษา, ดูงานด้านสาธารณสุข..."
-                  value={studyObjectives}
-                  onChange={(e) => setStudyObjectives(e.target.value)}
-                  rows={3}
-                />
+              <div className="space-y-4">
+                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🏢 ข้อมูลองค์กร</h3>
+                <div className="space-y-2">
+                  <Label className="font-heading font-semibold text-base">ชื่อหน่วยงาน *</Label>
+                  <Input placeholder="ชื่อหน่วยงาน" value={orgName} onChange={(e) => setOrgName(e.target.value)} className="text-base h-12 rounded-xl" />
+                </div>
+                <div className="space-y-2">
+                  <Label className="font-heading font-semibold text-base">ประเภทองค์กร</Label>
+                  <div className="flex flex-wrap gap-2">
+                    {orgTypes.map((o) => (
+                      <button
+                        key={o.value}
+                        type="button"
+                        onClick={() => setOrgType(o.value)}
+                        className={cn(
+                          "rounded-xl border-2 px-4 py-3 font-body text-base transition-all active:scale-95 flex items-center gap-2",
+                          orgType === o.value
+                            ? "border-primary bg-primary/10 text-primary shadow-md"
+                            : "border-border text-foreground hover:border-primary/50"
+                        )}
+                      >
+                        <o.icon className="h-4 w-4" />
+                        {o.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
+            )}
 
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">หัวข้อที่สนใจ</Label>
-                <div className="flex flex-wrap gap-2">
+            {/* === Study Topics (group only) === */}
+            {tripType === "group" && (
+              <div className="space-y-4">
+                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📚 หัวข้อศึกษาดูงาน</h3>
+                <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายหัวข้อ</p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {studyTopicOptions.map((t) => (
-                    <Badge
+                    <button
                       key={t}
-                      variant={selectedTopics.includes(t) ? "default" : "outline"}
-                      className="cursor-pointer transition-all text-sm px-3 py-2"
+                      type="button"
                       onClick={() => toggleTopic(t)}
+                      className={cn(
+                        "rounded-xl border-2 px-3 py-3 font-body text-base text-center transition-all active:scale-95",
+                        selectedTopics.includes(t)
+                          ? "border-primary bg-primary/10 text-primary shadow-md"
+                          : "border-border text-foreground hover:border-primary/50"
+                      )}
                     >
                       {t}
-                    </Badge>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* === Accommodation & Meal === */}
+            <div className="space-y-4">
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🏨 ที่พักและอาหาร <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
+              
+              <div className="space-y-2">
+                <Label className="font-heading font-semibold text-base">ระดับที่พัก</Label>
+                <div className="grid grid-cols-3 gap-3">
+                  {accommodationLevels.map((h) => (
+                    <button
+                      key={h.value}
+                      type="button"
+                      onClick={() => setAccommodation(h.value)}
+                      className={cn(
+                        "rounded-xl border-2 p-4 text-center transition-all active:scale-95",
+                        accommodation === h.value
+                          ? "border-primary bg-primary/10 shadow-md"
+                          : "border-border hover:border-primary/50"
+                      )}
+                    >
+                      <p className="font-heading text-lg font-bold text-foreground">{h.label}</p>
+                      <p className="font-body text-xs text-muted-foreground">{h.desc}</p>
+                    </button>
                   ))}
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">สถานที่ที่ต้องการไปดูงาน (ถ้ามี)</Label>
-                <Textarea
-                  placeholder="เช่น มหาวิทยาลัยโตเกียว, โรงพยาบาลแห่งชาติเกาหลี, นิคมอุตสาหกรรม..."
-                  value={preferredVisits}
-                  onChange={(e) => setPreferredVisits(e.target.value)}
-                  rows={2}
-                />
+                <Label className="font-heading font-semibold text-base">อาหาร</Label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {mealPrefs.map((m) => (
+                    <button
+                      key={m.value}
+                      type="button"
+                      onClick={() => setMeal(m.value)}
+                      className={cn(
+                        "rounded-xl border-2 px-4 py-3 font-body text-base text-center transition-all active:scale-95",
+                        meal === m.value
+                          ? "border-primary bg-primary/10 text-primary shadow-md"
+                          : "border-border text-foreground hover:border-primary/50"
+                      )}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-            )}
 
+            {/* === Special Requests === */}
             <div className="space-y-4">
-              <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">⚙️ ความต้องการเพิ่มเติม <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">ระดับที่พัก</Label>
-                  <Select value={accommodation} onValueChange={setAccommodation}>
-                    <SelectTrigger><SelectValue placeholder="เลือก" /></SelectTrigger>
-                    <SelectContent>
-                      {accommodationLevels.map((h) => <SelectItem key={h} value={h}>{h}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label className="font-heading font-semibold text-sm">อาหาร</Label>
-                  <Select value={meal} onValueChange={setMeal}>
-                    <SelectTrigger><SelectValue placeholder="เลือก" /></SelectTrigger>
-                    <SelectContent>
-                      {mealPrefs.map((m) => <SelectItem key={m} value={m}>{m}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
-                </div>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">💬 คำขอพิเศษ <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
+              <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายข้อ</p>
+              <div className="grid grid-cols-2 gap-3">
+                {specialRequestOptions.map((r) => (
+                  <button
+                    key={r}
+                    type="button"
+                    onClick={() => toggleSpecialReq(r)}
+                    className={cn(
+                      "rounded-xl border-2 px-4 py-3 font-body text-base text-left transition-all active:scale-95",
+                      selectedSpecialRequests.includes(r)
+                        ? "border-primary bg-primary/10 text-primary shadow-md"
+                        : "border-border text-foreground hover:border-primary/50"
+                    )}
+                  >
+                    {selectedSpecialRequests.includes(r) ? "✅ " : ""}{r}
+                  </button>
+                ))}
               </div>
-              <div className="space-y-2">
-                <Label className="font-heading font-semibold text-sm">คำขอพิเศษ</Label>
-                <Textarea
-                  placeholder="เช่น ต้องการล่ามภาษาจีน, มีผู้สูงอายุร่วมคณะ, ต้องการใบเสนอราคาภายในวันที่..."
-                  value={specialRequest}
-                  onChange={(e) => setSpecialRequest(e.target.value)}
-                  rows={3}
-                />
+            </div>
+
+            {/* === Contact Info === */}
+            <div className="space-y-4">
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📞 ข้อมูลผู้ติดต่อ</h3>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="space-y-2">
+                  <Label className="font-heading font-semibold text-base">ชื่อ-สกุล *</Label>
+                  <Input placeholder="ชื่อผู้ประสานงาน" value={contactName} onChange={(e) => setContactName(e.target.value)} className="text-base h-12 rounded-xl" />
+                </div>
+                <div className="space-y-2">
+                  <Label className="font-heading font-semibold text-base flex items-center gap-2">
+                    <Phone className="h-4 w-4" /> เบอร์โทรศัพท์ *
+                  </Label>
+                  <Input placeholder="08x-xxx-xxxx" type="tel" value={contactPhone} onChange={(e) => setContactPhone(e.target.value)} className="text-base h-12 rounded-xl" />
+                </div>
+                <div className="space-y-2">
+                  <Label className="font-heading font-semibold text-base flex items-center gap-2">
+                    <Mail className="h-4 w-4" /> อีเมล <span className="text-muted-foreground text-xs font-normal">(ไม่บังคับ)</span>
+                  </Label>
+                  <Input type="email" placeholder="email@org.go.th" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} className="text-base h-12 rounded-xl" />
+                </div>
+                <div className="space-y-2">
+                  <Label className="font-heading font-semibold text-base flex items-center gap-2">
+                    <MessageCircle className="h-4 w-4" /> LINE ID <span className="text-muted-foreground text-xs font-normal">(ไม่บังคับ)</span>
+                  </Label>
+                  <Input placeholder="@lineid" value={contactLineId} onChange={(e) => setContactLineId(e.target.value)} className="text-base h-12 rounded-xl" />
+                </div>
               </div>
             </div>
 
             {/* PDPA Consent */}
-            <div className="flex items-start gap-3 p-4 rounded-lg border border-border bg-muted/30">
+            <div className="flex items-start gap-4 p-5 rounded-2xl border border-border bg-muted/30">
               <Checkbox
                 id="pdpa"
                 checked={pdpaConsent}
                 onCheckedChange={(checked) => setPdpaConsent(checked === true)}
-                className="mt-0.5"
+                className="mt-1 h-6 w-6"
               />
-              <label htmlFor="pdpa" className="font-body text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                ข้าพเจ้ายินยอมให้ บริษัท รีเจ้นท์ ฮอลิเดย์ จำกัด เก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลของข้าพเจ้า
-                เพื่อวัตถุประสงค์ในการจัดทำใบเสนอราคา ติดต่อประสานงาน และให้บริการนำเที่ยว
-                ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) <span className="text-destructive">*</span>
+              <label htmlFor="pdpa" className="font-body text-base text-muted-foreground leading-relaxed cursor-pointer">
+                ข้าพเจ้ายินยอมให้เก็บข้อมูลส่วนบุคคลเพื่อจัดทำใบเสนอราคาและติดต่อประสานงาน
+                ตาม พ.ร.บ.คุ้มครองข้อมูลส่วนบุคคล (PDPA) <span className="text-destructive">*</span>
               </label>
             </div>
 
             {/* Submit */}
-            <Button variant="hero" size="lg" className="w-full text-lg py-6" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
+            <Button variant="hero" size="lg" className="w-full text-xl py-7 rounded-2xl" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
               {isSubmitting ? (
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                <Loader2 className="mr-2 h-6 w-6 animate-spin" />
               ) : (
-                <Send className="mr-2 h-5 w-5" />
+                <Send className="mr-2 h-6 w-6" />
               )}
               {isSubmitting ? "กำลังส่ง..." : "ส่งคำขอใบเสนอราคา"}
             </Button>
 
-            <p className="text-center font-body text-xs text-muted-foreground">
+            <p className="text-center font-body text-sm text-muted-foreground pb-8">
               ทีมงาน Regent Holiday จะติดต่อกลับภายใน 24 ชั่วโมง ทางโทรศัพท์หรือ LINE
             </p>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
