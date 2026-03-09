@@ -362,14 +362,14 @@ export default function BookingPage() {
                 <Wallet className="inline h-5 w-5 mr-1" /> งบประมาณต่อคน
               </h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกงบ หรือเลื่อนปรับเอง</p>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                 {budgetPresets.map((b) => (
                   <button
                     key={b.value}
                     type="button"
                     onClick={() => setBudget([b.value])}
                     className={cn(
-                      "rounded-xl border-2 px-5 py-3 font-heading text-base font-bold transition-all active:scale-95",
+                      "rounded-xl border-2 px-4 py-4 font-heading text-base font-bold transition-all active:scale-[0.97] min-h-[52px]",
                       budget[0] === b.value
                         ? "border-primary bg-primary/10 text-primary shadow-md"
                         : "border-border text-foreground hover:border-primary/50"
