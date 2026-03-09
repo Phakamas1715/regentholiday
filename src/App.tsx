@@ -18,6 +18,7 @@ import LoginPage from "./pages/LoginPage";
 // Admin pages — lazy loaded (heavy: recharts, admin logic)
 const AdminDashboardPage = lazy(() => import("./pages/admin/AdminDashboardPage"));
 const AnalyticsPage = lazy(() => import("./pages/admin/AnalyticsPage"));
+const TourProgramsPage = lazy(() => import("./pages/admin/TourProgramsPage"));
 
 // Customer pages — lazy loaded
 const CustomerDashboardPage = lazy(() => import("./pages/customer/CustomerDashboardPage"));
@@ -65,6 +66,14 @@ const App = () => (
                 element={
                   <ProtectedRoute requireAdmin>
                     <AnalyticsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/programs"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <TourProgramsPage />
                   </ProtectedRoute>
                 }
               />

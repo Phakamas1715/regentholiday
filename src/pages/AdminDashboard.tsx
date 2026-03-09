@@ -12,6 +12,7 @@ import {
   ChevronDown, ChevronUp, Loader2, Plus,
   MessageSquare, Search,
 } from "lucide-react";
+import { QuotationDialog } from "@/pages/admin/QuotationDialog";
 
 type Lead = {
   id: string;
@@ -72,6 +73,7 @@ export default function AdminDashboard() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [generatingAI, setGeneratingAI] = useState<string | null>(null);
+  const [quotationLead, setQuotationLead] = useState<Lead | null>(null);
 
   useEffect(() => {
     fetchLeads();
@@ -339,7 +341,7 @@ export default function AdminDashboard() {
                           {generatingAI === lead.id ? "กำลังสร้าง..." : "AI สร้างโปรแกรม"}
                         </Button>
 
-                        <Button variant="outline">
+                        <Button variant="outline" onClick={() => setQuotationLead(lead)}>
                           <FileText className="mr-2 h-4 w-4" />
                           ออกใบเสนอราคา
                         </Button>
@@ -349,6 +351,19 @@ export default function AdminDashboard() {
                 </div>
               ))}
             </div>
+          )}
+
+          {/* Quotation Dialog */}
+          {quotationLead && (
+            <QuotationDialog
+              open={!!quotationLead}
+              onOpenChange={(open) => !open && setQuotationLead(null)}
+              lead={quotationLead as any}
+              onSuccess={() => {
+                setQuotationLead(null);
+                fetchLeads();
+              }}
+            />
           )}
         </div>
       </div>
