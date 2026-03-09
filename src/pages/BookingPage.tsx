@@ -193,22 +193,22 @@ export default function BookingPage() {
             {/* === Trip Type === */}
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">✈️ ประเภททริป</h3>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {tripTypes.map((t) => (
                   <button
                     key={t.value}
                     type="button"
                     onClick={() => setTripType(t.value)}
                     className={cn(
-                      "rounded-2xl border-2 p-4 text-center transition-all active:scale-95",
+                      "rounded-2xl border-2 p-3 sm:p-4 text-center transition-all active:scale-[0.97]",
                       tripType === t.value
                         ? "border-primary bg-primary/10 shadow-md"
                         : "border-border hover:border-primary/50"
                     )}
                   >
-                    <t.icon className={cn("h-7 w-7 mx-auto mb-2", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
-                    <p className="font-heading text-base font-semibold">{t.label}</p>
-                    <p className="font-body text-xs text-muted-foreground mt-1">{t.desc}</p>
+                    <t.icon className={cn("h-8 w-8 mx-auto mb-2", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
+                    <p className="font-heading text-sm sm:text-base font-semibold">{t.label}</p>
+                    <p className="font-body text-[11px] sm:text-xs text-muted-foreground mt-1">{t.desc}</p>
                   </button>
                 ))}
               </div>
