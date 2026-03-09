@@ -424,14 +424,14 @@ export default function BookingPage() {
               <div className="space-y-4">
                 <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📚 หัวข้อศึกษาดูงาน</h3>
                 <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายหัวข้อ</p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
                   {studyTopicOptions.map((t) => (
                     <button
                       key={t}
                       type="button"
                       onClick={() => toggleTopic(t)}
                       className={cn(
-                        "rounded-xl border-2 px-3 py-3 font-body text-base text-center transition-all active:scale-95",
+                        "rounded-xl border-2 px-3 py-4 font-body text-base text-center transition-all active:scale-[0.97] min-h-[52px]",
                         selectedTopics.includes(t)
                           ? "border-primary bg-primary/10 text-primary shadow-md"
                           : "border-border text-foreground hover:border-primary/50"
