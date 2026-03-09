@@ -2,3 +2,6 @@ project_id = "yrroootkiayippcsmugd"
 
 [functions.generate-tour]
 verify_jwt = false
+
+[functions.notify-discord]
+verify_jwt = false
