@@ -181,21 +181,23 @@ export default function BookingPage() {
       <Navbar />
       <div className="pt-16 min-h-screen flex flex-col lg:flex-row">
         {/* Left image panel */}
-        <div className="hidden lg:block lg:w-2/5 relative">
-          <img src={heroImage} alt="ทัวร์ต่างประเทศ" className="w-full h-full object-cover sticky top-0" />
-          <div className="absolute inset-0 bg-gradient-hero opacity-40" />
-          <div className="absolute bottom-12 left-8 right-8 z-10">
-            <h2 className="font-heading text-3xl font-bold text-primary-foreground mb-2">
-              ขอใบเสนอราคาทัวร์
-            </h2>
-            <p className="font-body text-primary-foreground/80 text-lg">
-              แค่เลือก-แตะ ไม่ต้องพิมพ์มาก
-            </p>
+        <div className="hidden lg:block lg:w-2/5 relative min-h-screen">
+          <div className="sticky top-0 h-screen">
+            <img src={heroImage} alt="ทัวร์ต่างประเทศ" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-hero opacity-40" />
+            <div className="absolute bottom-12 left-8 right-8 z-10">
+              <h2 className="font-heading text-3xl font-bold text-primary-foreground mb-2">
+                ขอใบเสนอราคาทัวร์
+              </h2>
+              <p className="font-body text-primary-foreground/80 text-lg">
+                แค่เลือก-แตะ ไม่ต้องพิมพ์มาก
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Right form panel — mobile-first: generous padding, smooth scroll */}
-        <div className="flex-1 p-4 sm:p-6 md:p-12 lg:p-16 overflow-y-auto max-h-screen scroll-smooth">
+        {/* Right form panel */}
+        <div className="flex-1 p-4 sm:p-6 md:p-12 lg:p-16">
           <div className="max-w-xl mx-auto space-y-8 sm:space-y-10">
             <div>
               <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">ขอใบเสนอราคา</h1>
@@ -572,8 +574,8 @@ export default function BookingPage() {
             </div>
 
             {/* Submit — sticky on mobile for easy access */}
-            <div className="sticky bottom-0 bg-background pt-4 pb-6 -mx-4 px-4 sm:static sm:mx-0 sm:px-0 sm:pt-0 sm:pb-0 border-t border-border/50 sm:border-0 space-y-3">
-              <Button variant="hero" size="lg" className="w-full text-xl py-7 rounded-2xl" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
+            <div className="sticky bottom-0 bg-background/95 backdrop-blur-sm pt-4 pb-6 -mx-4 px-4 sm:static sm:mx-0 sm:px-0 sm:pt-0 sm:pb-0 sm:bg-transparent sm:backdrop-blur-none border-t border-border/50 sm:border-0 space-y-3 z-20">
+              <Button variant="hero" size="lg" className="w-full text-xl py-7 rounded-2xl shadow-lg" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
                 {isSubmitting ? (
                   <Loader2 className="mr-2 h-6 w-6 animate-spin" />
                 ) : (
