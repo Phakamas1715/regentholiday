@@ -2,21 +2,21 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sparkles, Shield, Compass, ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/hero-travel.jpg";
-import chiangmaiImg from "@/assets/destination-chiangmai.jpg";
-import krabiImg from "@/assets/destination-krabi.jpg";
-import phuketImg from "@/assets/destination-phuket.jpg";
+import shanghaiImg from "@/assets/destination-shanghai.jpg";
+import japanImg from "@/assets/destination-japan.jpg";
+import koreaImg from "@/assets/destination-korea.jpg";
 import { Navbar } from "@/components/Navbar";
 
 const features = [
-  { icon: Sparkles, title: "AI Assistant 24/7", desc: "ผู้ช่วยวางแผน AI ตลอด 24 ชั่วโมง ออกแบบทริปที่ใช่สำหรับคุณ" },
-  { icon: Shield, title: "Best Price", desc: "การันตีราคาดีที่สุด เปรียบเทียบจากพันกว่าแหล่ง" },
-  { icon: Compass, title: "Custom Itinerary", desc: "โปรแกรมทัวร์เฉพาะคุณ ปรับแต่งได้ทุกรายละเอียด" },
+  { icon: Sparkles, title: "ทัวร์คุณภาพ", desc: "โปรแกรมทัวร์ต่างประเทศคัดสรรพิเศษ จัดโดยทีมงานมืออาชีพ" },
+  { icon: Shield, title: "ราคาคุ้มค่า", desc: "การันตีราคาดีที่สุด พร้อมบริการครบวงจร" },
+  { icon: Compass, title: "ปรับแต่งได้", desc: "ออกแบบทริปตามใจคุณ ปรับแต่งได้ทุกรายละเอียด" },
 ];
 
 const popularDestinations = [
-  { name: "เชียงใหม่", image: chiangmaiImg, price: "จาก ฿8,500", rating: 4.9 },
-  { name: "กระบี่", image: krabiImg, price: "จาก ฿12,500", rating: 4.8 },
-  { name: "ภูเก็ต", image: phuketImg, price: "จาก ฿10,900", rating: 4.7 },
+  { name: "เซี่ยงไฮ้", country: "จีน", image: shanghaiImg, price: "จาก ฿19,900", rating: 4.9 },
+  { name: "โตเกียว-โอซาก้า", country: "ญี่ปุ่น", image: japanImg, price: "จาก ฿29,900", rating: 4.8 },
+  { name: "โซล-เกาหลี", country: "เกาหลีใต้", image: koreaImg, price: "จาก ฿22,900", rating: 4.7 },
 ];
 
 const Index = () => {
@@ -27,7 +27,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="ทะเลไทยสวยงาม" className="w-full h-full object-cover" />
+          <img src={heroImage} alt="ท่องเที่ยวต่างประเทศ" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-hero opacity-60" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </div>
@@ -36,14 +36,14 @@ const Index = () => {
           <div className="max-w-2xl space-y-6 animate-fade-in-up">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 backdrop-blur-sm text-primary-foreground font-body text-sm font-medium">
               <Sparkles className="h-4 w-4" />
-              AI-Powered Trip Planning
+              Regent Holiday — ทัวร์ต่างประเทศ
             </span>
             <h1 className="font-heading text-5xl md:text-7xl font-extrabold leading-tight text-primary-foreground">
-              วางแผนทริปฝัน<br />
-              <span className="text-gradient-primary">ด้วย AI</span>
+              ค้นพบตัวตนใหม่<br />
+              <span className="text-gradient-primary">ในทุกการเดินทาง</span>
             </h1>
             <p className="font-body text-lg md:text-xl text-primary-foreground/80 max-w-lg">
-              ให้ AI ออกแบบโปรแกรมทัวร์ที่เหมาะกับคุณ จองง่าย ราคาดี ครบทุกรายละเอียด
+              เปิดประสบการณ์ใหม่กับทัวร์ต่างประเทศคุณภาพ ญี่ปุ่น เกาหลี จีน ยุโรป และอีกมากมาย
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/booking">
@@ -88,9 +88,9 @@ const Index = () => {
         <div className="container">
           <div className="text-center mb-12">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-3">
-              จุดหมายปลายทางยอดนิยม
+              ทัวร์ต่างประเทศยอดนิยม
             </h2>
-            <p className="font-body text-muted-foreground text-lg">เลือกเที่ยวที่ไหน ให้ AI จัดให้</p>
+            <p className="font-body text-muted-foreground text-lg">เลือกจุดหมายปลายทาง แล้วให้เราจัดให้</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -109,7 +109,7 @@ const Index = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="font-heading text-2xl font-bold text-primary-foreground">{dest.name}</h3>
-                        <p className="font-body text-primary-foreground/80">{dest.price}</p>
+                        <p className="font-body text-primary-foreground/80">{dest.country} · {dest.price}</p>
                       </div>
                       <div className="flex items-center gap-1 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                         <Star className="h-3.5 w-3.5 fill-current" />
@@ -131,7 +131,7 @@ const Index = () => {
             พร้อมเริ่มต้นการเดินทาง?
           </h2>
           <p className="font-body text-lg text-primary-foreground/80">
-            ลองให้ AI วางแผนทริปให้คุณวันนี้ — ฟรี ไม่มีค่าใช้จ่าย
+            ให้ Regent Holiday ดูแลทุกรายละเอียดให้คุณ — จองง่าย สะดวก ปลอดภัย
           </p>
           <Link to="/booking">
             <Button variant="hero" size="lg" className="text-lg px-10 py-6 mt-4">
@@ -145,7 +145,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-10 bg-foreground">
         <div className="container text-center">
-          <p className="font-body text-sm text-muted">© 2026 TripAI — วางแผนทริปด้วย AI</p>
+          <p className="font-body text-sm text-muted">© 2026 Regent Holiday — ทัวร์ต่างประเทศคุณภาพ</p>
         </div>
       </footer>
     </div>

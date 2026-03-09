@@ -4,55 +4,61 @@ import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Navbar } from "@/components/Navbar";
-import { Star, Clock, MapPin, ArrowRight, Filter } from "lucide-react";
+import { Star, Clock, MapPin, ArrowRight, Filter, Plane } from "lucide-react";
 import { Link } from "react-router-dom";
-import chiangmaiImg from "@/assets/destination-chiangmai.jpg";
-import krabiImg from "@/assets/destination-krabi.jpg";
-import phuketImg from "@/assets/destination-phuket.jpg";
+import shanghaiImg from "@/assets/destination-shanghai.jpg";
+import japanImg from "@/assets/destination-japan.jpg";
+import koreaImg from "@/assets/destination-korea.jpg";
 
 const packages = [
   {
     id: 1,
-    name: "เชียงใหม่ วัฒนธรรมล้านนา",
-    image: chiangmaiImg,
+    name: "เซี่ยงไฮ้ ไม่ลงร้าน 4 วัน 3 คืน (MU)",
+    image: shanghaiImg,
     days: 4,
-    price: 12500,
+    price: 19900,
     rating: 4.9,
-    highlights: ["ดอยสุเทพ", "ย่านเมืองเก่า", "อุทยานแห่งชาติดอยอินทนนท์"],
-    timeline: ["Day 1: เดินทาง + วัดพระธาตุดอยสุเทพ", "Day 2: Old City Tour + Night Bazaar", "Day 3: ดอยอินทนนท์ Full Day", "Day 4: อิสระ + กลับ"],
+    airline: "China Eastern (MU)",
+    highlights: ["เดอะบันด์", "หาดไว่ทาน", "เมืองโบราณจูเจียเจี่ยว"],
+    timeline: ["Day 1: กรุงเทพฯ – เซี่ยงไฮ้ + หาดไว่ทาน", "Day 2: เดอะบันด์ + ถนนนานจิง + ตลาดเฉิงหวังเมี่ยว", "Day 3: เมืองโบราณจูเจียเจี่ยว + Shanghai Tower", "Day 4: อิสระ + เซี่ยงไฮ้ – กรุงเทพฯ"],
     style: "วัฒนธรรม",
+    country: "จีน",
   },
   {
     id: 2,
-    name: "กระบี่ ทะเลหมอก สวรรค์ทะเลใต้",
-    image: krabiImg,
-    days: 3,
-    price: 15800,
+    name: "โตเกียว-โอซาก้า ซากุระ 6 วัน 4 คืน",
+    image: japanImg,
+    days: 6,
+    price: 35900,
     rating: 4.8,
-    highlights: ["เกาะพีพี", "อ่าวไร่เลย์", "สระมรกต"],
-    timeline: ["Day 1: เดินทาง + หาดอ่าวนาง", "Day 2: ทัวร์ 4 เกาะ", "Day 3: สระมรกต + กลับ"],
+    airline: "Thai Airways (TG)",
+    highlights: ["วัดอาซากุสะ", "ภูเขาไฟฟูจิ", "ชินไซบาชิ"],
+    timeline: ["Day 1: กรุงเทพฯ – โตเกียว", "Day 2: อาซากุสะ + ชิบุย่า + ฮาราจุกุ", "Day 3: ภูเขาไฟฟูจิ + ทะเลสาบคาวากุจิ", "Day 4: ชินคันเซ็น → โอซาก้า", "Day 5: ชินไซบาชิ + โดทงโบริ", "Day 6: โอซาก้า – กรุงเทพฯ"],
     style: "ธรรมชาติ",
+    country: "ญี่ปุ่น",
   },
   {
     id: 3,
-    name: "ภูเก็ต Premium Getaway",
-    image: phuketImg,
+    name: "โซล-นามิ-เอเวอร์แลนด์ 5 วัน 3 คืน",
+    image: koreaImg,
     days: 5,
     price: 22900,
     rating: 4.7,
-    highlights: ["หาดป่าตอง", "เมืองเก่าภูเก็ต", "เกาะเฮ"],
-    timeline: ["Day 1: เดินทาง + Check-in Pool Villa", "Day 2: เกาะเฮ + ดำน้ำ", "Day 3: เมืองเก่า + Street Food", "Day 4: สปา + อิสระ", "Day 5: กลับ"],
+    airline: "Korean Air (KE)",
+    highlights: ["พระราชวังเคียงบก", "เกาะนามิ", "เอเวอร์แลนด์"],
+    timeline: ["Day 1: กรุงเทพฯ – อินชอน", "Day 2: พระราชวังเคียงบก + บุกชอนฮันอก", "Day 3: เกาะนามิ + เปอติฟรองซ์", "Day 4: เอเวอร์แลนด์ + ย่านมยองดง", "Day 5: อิสระ + อินชอน – กรุงเทพฯ"],
     style: "พักผ่อน",
+    country: "เกาหลีใต้",
   },
 ];
 
 export default function PackagesPage() {
-  const [priceRange, setPriceRange] = useState([30000]);
+  const [priceRange, setPriceRange] = useState([50000]);
   const [duration, setDuration] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
   const filteredPackages = packages.filter(
-    (p) => p.price <= priceRange[0] && (!duration || (duration === "3" ? p.days <= 3 : duration === "5" ? p.days <= 5 : true))
+    (p) => p.price <= priceRange[0] && (!duration || (duration === "4" ? p.days <= 4 : duration === "6" ? p.days <= 6 : true))
   );
 
   return (
@@ -62,11 +68,11 @@ export default function PackagesPage() {
         <div className="container">
           {/* Header */}
           <div className="mb-8 text-center">
-            <Badge className="mb-3">AI Recommended</Badge>
+            <Badge className="mb-3">Regent Holiday</Badge>
             <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">
-              แพ็คเกจที่ AI แนะนำสำหรับคุณ
+              แพ็คเกจทัวร์ต่างประเทศ
             </h1>
-            <p className="font-body text-muted-foreground text-lg">จากข้อมูลที่คุณกรอก เราเลือก 3 แพ็คเกจที่เหมาะที่สุด</p>
+            <p className="font-body text-muted-foreground text-lg">ทัวร์คุณภาพคัดสรรพิเศษ จัดโดยทีมงานมืออาชีพ</p>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-8">
@@ -78,7 +84,7 @@ export default function PackagesPage() {
                 </h3>
                 <div className="space-y-2">
                   <label className="font-body text-sm text-muted-foreground">ราคาสูงสุด</label>
-                  <Slider value={priceRange} onValueChange={setPriceRange} min={10000} max={50000} step={5000} />
+                  <Slider value={priceRange} onValueChange={setPriceRange} min={15000} max={80000} step={5000} />
                   <p className="text-right text-sm font-semibold text-primary">฿{priceRange[0].toLocaleString()}</p>
                 </div>
                 <div className="space-y-2">
@@ -87,8 +93,8 @@ export default function PackagesPage() {
                     <SelectTrigger><SelectValue placeholder="ทั้งหมด" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">ทั้งหมด</SelectItem>
-                      <SelectItem value="3">1-3 วัน</SelectItem>
-                      <SelectItem value="5">4-5 วัน</SelectItem>
+                      <SelectItem value="4">1-4 วัน</SelectItem>
+                      <SelectItem value="6">5-6 วัน</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -108,7 +114,7 @@ export default function PackagesPage() {
                 >
                   <div className="md:w-80 aspect-video md:aspect-auto overflow-hidden relative">
                     <img src={pkg.image} alt={pkg.name} className="w-full h-full object-cover" />
-                    <Badge className="absolute top-4 left-4">{pkg.style}</Badge>
+                    <Badge className="absolute top-4 left-4">{pkg.country}</Badge>
                   </div>
                   <div className="flex-1 p-6 md:p-8 space-y-4">
                     <div className="flex items-start justify-between">
@@ -119,8 +125,9 @@ export default function PackagesPage() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground font-body">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground font-body flex-wrap">
                       <span className="flex items-center gap-1"><Clock className="h-4 w-4" />{pkg.days} วัน {pkg.days - 1} คืน</span>
+                      <span className="flex items-center gap-1"><Plane className="h-4 w-4" />{pkg.airline}</span>
                       <span className="flex items-center gap-1"><MapPin className="h-4 w-4" />{pkg.highlights.length} จุดเด่น</span>
                     </div>
 
