@@ -12,6 +12,7 @@ import {
   ChevronDown, ChevronUp, Loader2, Plus,
   MessageSquare, Search,
 } from "lucide-react";
+import { QuotationDialog } from "@/pages/admin/QuotationDialog";
 
 type Lead = {
   id: string;
