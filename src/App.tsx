@@ -19,6 +19,8 @@ import LoginPage from "./pages/LoginPage";
 const AdminDashboardPage = lazy(() => import("./pages/admin/AdminDashboardPage"));
 const AnalyticsPage = lazy(() => import("./pages/admin/AnalyticsPage"));
 const TourProgramsPage = lazy(() => import("./pages/admin/TourProgramsPage"));
+const QuotationsListPage = lazy(() => import("./pages/admin/QuotationsListPage"));
+const QuotationPreviewPage = lazy(() => import("./pages/admin/QuotationPreviewPage"));
 
 // Customer pages — lazy loaded
 const CustomerDashboardPage = lazy(() => import("./pages/customer/CustomerDashboardPage"));
@@ -74,6 +76,22 @@ const App = () => (
                 element={
                   <ProtectedRoute requireAdmin>
                     <TourProgramsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/quotations"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <QuotationsListPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/quotations/:id"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <QuotationPreviewPage />
                   </ProtectedRoute>
                 }
               />
