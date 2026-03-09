@@ -62,55 +62,13 @@ const topTours = [
 ];
 
 export default function AnalyticsDashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [period, setPeriod] = useState("6m");
 
   return (
-    <div className="min-h-screen bg-muted/30 flex">
-      {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-secondary text-secondary-foreground transform transition-transform lg:translate-x-0 lg:static lg:inset-auto ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}>
-        <div className="flex items-center justify-between h-16 px-6 border-b border-sidebar-border">
-          <Link to="/" className="flex items-center gap-2 font-heading font-bold text-lg text-secondary-foreground">
-            <MapPin className="h-5 w-5 text-primary" />
-            TripAI Admin
-          </Link>
-          <button className="lg:hidden text-secondary-foreground" onClick={() => setSidebarOpen(false)}>
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-        <nav className="p-4 space-y-1">
-          {sidebarItems.map((item) => (
-            <Link
-              key={item.label}
-              to={item.path || "#"}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-body transition-colors ${
-                item.active
-                  ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                  : "text-secondary-foreground/70 hover:bg-sidebar-accent/50"
-              }`}
-            >
-              <item.icon className="h-5 w-5" />
-              <span>{item.label}</span>
-            </Link>
-          ))}
-        </nav>
-        <div className="absolute bottom-4 left-4 right-4">
-          <Link to="/" className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-body text-secondary-foreground/70 hover:bg-sidebar-accent/50">
-            <LogOut className="h-5 w-5" />
-            กลับหน้าเว็บ
-          </Link>
-        </div>
-      </aside>
-
-      {/* Main */}
-      <div className="flex-1 flex flex-col min-w-0">
-        <header className="h-16 bg-background border-b border-border flex items-center justify-between px-6">
-          <div className="flex items-center gap-4">
-            <button className="lg:hidden text-foreground" onClick={() => setSidebarOpen(true)}>
-              <Menu className="h-6 w-6" />
-            </button>
-            <h1 className="font-heading text-xl font-bold text-foreground">Analytics</h1>
-          </div>
+    <AdminLayout>
+      <div className="p-6 md:p-8 space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="font-heading text-xl font-bold text-foreground">Analytics</h1>
           <Select value={period} onValueChange={setPeriod}>
             <SelectTrigger className="w-36">
               <SelectValue />
@@ -122,9 +80,7 @@ export default function AnalyticsDashboard() {
               <SelectItem value="1y">1 ปี</SelectItem>
             </SelectContent>
           </Select>
-        </header>
-
-        <main className="flex-1 overflow-y-auto p-6 space-y-6">
+        </div>
           {/* KPIs */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {kpis.map((kpi) => (
