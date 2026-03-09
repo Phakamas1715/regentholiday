@@ -1,0 +1,4 @@
+project_id = "yrroootkiayippcsmugd"
+
+[functions.generate-tour]
+verify_jwt = false
