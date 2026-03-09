@@ -24,17 +24,29 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`font-body text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === item.path ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.external ? (
+              <a
+                key={item.path}
+                href={item.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`font-body text-sm font-medium transition-colors hover:text-primary ${
+                  location.pathname === item.path ? "text-primary" : "text-muted-foreground"
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          )}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
