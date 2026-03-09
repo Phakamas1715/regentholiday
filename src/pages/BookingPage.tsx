@@ -218,14 +218,14 @@ export default function BookingPage() {
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🌍 ปลายทาง</h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกปลายทางที่ต้องการ</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
                 {popularDestinations.map((d) => (
                   <button
                     key={d}
                     type="button"
                     onClick={() => { setDestination(d); setCustomDestination(""); }}
                     className={cn(
-                      "rounded-xl border-2 px-4 py-4 text-center font-body text-base font-medium transition-all active:scale-95",
+                      "rounded-xl border-2 px-3 py-4 sm:px-4 sm:py-5 text-center font-body text-sm sm:text-base font-medium transition-all active:scale-[0.97] min-h-[52px]",
                       destination === d
                         ? "border-primary bg-primary/10 text-primary shadow-md"
                         : "border-border text-foreground hover:border-primary/50"
@@ -238,7 +238,7 @@ export default function BookingPage() {
                   type="button"
                   onClick={() => setDestination("__other__")}
                   className={cn(
-                    "rounded-xl border-2 border-dashed px-4 py-4 text-center font-body text-base font-medium transition-all active:scale-95",
+                    "rounded-xl border-2 border-dashed px-3 py-4 sm:px-4 sm:py-5 text-center font-body text-sm sm:text-base font-medium transition-all active:scale-[0.97] min-h-[52px]",
                     destination === "__other__"
                       ? "border-primary bg-primary/10 text-primary"
                       : "border-border text-muted-foreground hover:border-primary/50"
