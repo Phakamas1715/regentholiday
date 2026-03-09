@@ -70,6 +70,7 @@ export default function BookingPage() {
   const [accommodation, setAccommodation] = useState("");
   const [meal, setMeal] = useState("");
   const [specialRequest, setSpecialRequest] = useState("");
+  const [pdpaConsent, setPdpaConsent] = useState(false);
 
   const toggleTopic = (t: string) =>
     setSelectedTopics((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]);
