@@ -69,6 +69,14 @@ const App = () => (
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/admin/programs"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <TourProgramsPage />
+                  </ProtectedRoute>
+                }
+              />
 
               {/* Customer routes — lazy + protected */}
               <Route

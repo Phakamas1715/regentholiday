@@ -341,7 +341,7 @@ export default function AdminDashboard() {
                           {generatingAI === lead.id ? "กำลังสร้าง..." : "AI สร้างโปรแกรม"}
                         </Button>
 
-                        <Button variant="outline">
+                        <Button variant="outline" onClick={() => setQuotationLead(lead)}>
                           <FileText className="mr-2 h-4 w-4" />
                           ออกใบเสนอราคา
                         </Button>
@@ -351,6 +351,19 @@ export default function AdminDashboard() {
                 </div>
               ))}
             </div>
+          )}
+
+          {/* Quotation Dialog */}
+          {quotationLead && (
+            <QuotationDialog
+              open={!!quotationLead}
+              onOpenChange={(open) => !open && setQuotationLead(null)}
+              lead={quotationLead as any}
+              onSuccess={() => {
+                setQuotationLead(null);
+                fetchLeads();
+              }}
+            />
           )}
         </div>
       </div>
