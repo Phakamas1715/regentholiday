@@ -496,20 +496,21 @@ export default function BookingPage() {
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">💬 คำขอพิเศษ <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายข้อ</p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                 {specialRequestOptions.map((r) => (
                   <button
                     key={r}
                     type="button"
                     onClick={() => toggleSpecialReq(r)}
                     className={cn(
-                      "rounded-xl border-2 px-4 py-3 font-body text-base text-left transition-all active:scale-95",
+                      "rounded-xl border-2 px-4 py-4 font-body text-base text-left transition-all active:scale-[0.97] min-h-[52px] flex items-center gap-2",
                       selectedSpecialRequests.includes(r)
                         ? "border-primary bg-primary/10 text-primary shadow-md"
                         : "border-border text-foreground hover:border-primary/50"
                     )}
                   >
-                    {selectedSpecialRequests.includes(r) ? "✅ " : ""}{r}
+                    <span className="text-lg">{selectedSpecialRequests.includes(r) ? "✅" : "⬜"}</span>
+                    {r}
                   </button>
                 ))}
               </div>
