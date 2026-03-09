@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import { Globe, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import logoImg from "@/assets/logo-regent.png";
 
 const navItems = [
   { label: "หน้าแรก", path: "/" },
