@@ -31,7 +31,7 @@ export function Footer() {
             <div className="space-y-3">
               <a
                 href="tel:0616351491"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors justify-center md:justify-start"
               >
                 <Phone className="h-4 w-4" />
                 061-635-1491 (คุณนิค)
