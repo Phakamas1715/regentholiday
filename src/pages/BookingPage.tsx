@@ -572,7 +572,7 @@ export default function BookingPage() {
             </div>
 
             {/* Submit — sticky on mobile for easy access */}
-            <div className="sticky bottom-0 bg-background pt-4 pb-6 -mx-4 px-4 sm:static sm:mx-0 sm:px-0 sm:pt-0 sm:pb-0 border-t border-border/50 sm:border-0">
+            <div className="sticky bottom-0 bg-background pt-4 pb-6 -mx-4 px-4 sm:static sm:mx-0 sm:px-0 sm:pt-0 sm:pb-0 border-t border-border/50 sm:border-0 space-y-3">
               <Button variant="hero" size="lg" className="w-full text-xl py-7 rounded-2xl" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
                 {isSubmitting ? (
                   <Loader2 className="mr-2 h-6 w-6 animate-spin" />
@@ -581,6 +581,18 @@ export default function BookingPage() {
                 )}
                 {isSubmitting ? "กำลังส่ง..." : "ส่งคำขอใบเสนอราคา"}
               </Button>
+              <div className="text-center">
+                <p className="text-sm text-muted-foreground mb-2">หรือปรึกษาทีมงานโดยตรง</p>
+                <a
+                  href="https://line.me/R/ti/p/@ugm3067r"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold transition-colors"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  แอดไลน์ @ugm3067r
+                </a>
+              </div>
             </div>
 
             <p className="text-center font-body text-sm text-muted-foreground pb-8">

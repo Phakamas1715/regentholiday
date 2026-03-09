@@ -1,6 +1,6 @@
 // Navbar component
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, User, Shield } from "lucide-react";
+import { Menu, X, LogOut, User, Shield, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
@@ -82,6 +82,12 @@ export function Navbar() {
             </>
           ) : (
             <>
+              <a href="https://line.me/R/ti/p/@ugm3067r" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm" className="gap-1 text-green-600 border-green-600 hover:bg-green-50">
+                  <MessageCircle className="h-4 w-4" />
+                  แอดไลน์
+                </Button>
+              </a>
               <Link to="/login">
                 <Button variant="ghost" size="sm">เข้าสู่ระบบ</Button>
               </Link>
@@ -143,6 +149,9 @@ export function Navbar() {
             </>
           ) : (
             <>
+              <a href="https://line.me/R/ti/p/@ugm3067r" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-green-600 hover:text-green-700 font-semibold">
+                💬 แอดไลน์ปรึกษาฟรี
+              </a>
               <Link to="/login" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" className="w-full">เข้าสู่ระบบ</Button>
               </Link>
