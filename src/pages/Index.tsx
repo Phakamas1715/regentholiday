@@ -143,12 +143,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-10 bg-foreground">
-        <div className="container text-center">
-          <p className="font-body text-sm text-muted">© 2026 Regent Holiday — ทัวร์ต่างประเทศคุณภาพ</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
