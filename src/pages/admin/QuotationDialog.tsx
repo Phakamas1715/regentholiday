@@ -33,6 +33,7 @@ interface QuotationDialogProps {
 }
 
 export function QuotationDialog({ open, onOpenChange, lead, onSuccess }: QuotationDialogProps) {
+  const navigate = useNavigate();
   const [tourPrograms, setTourPrograms] = useState<TourProgram[]>([]);
   const [selectedProgramId, setSelectedProgramId] = useState<string>("none");
   const [pricePerPerson, setPricePerPerson] = useState(lead.budget_per_person ? Number(lead.budget_per_person) : 0);
