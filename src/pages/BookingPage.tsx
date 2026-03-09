@@ -106,7 +106,7 @@ export default function BookingPage() {
         contact_phone: contactPhone,
         contact_email: contactEmail || null,
         contact_line_id: contactLineId || null,
-        org_name: orgName,
+        org_name: orgName || contactName,
         org_type: (orgType || "other") as any,
         destination: finalDestination,
         transport_preference: tripType,
