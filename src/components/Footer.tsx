@@ -17,7 +17,7 @@ export function Footer() {
               <br />
               ทั้งทริปส่วนตัว ครอบครัว และกรุ๊ปองค์กร
             </p>
-            <div className="flex items-start gap-2 text-xs text-muted-foreground">
+            <div className="flex items-start gap-2 text-xs text-muted-foreground justify-center md:justify-start">
               <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
               <span>
                 3/85 Prachanivej Prime Square 1, 7th FL., Tessabannimitnue Rd., Lardyao, Jatujak, Bangkok 10900
