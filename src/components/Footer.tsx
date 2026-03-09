@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
           {/* Company Info */}
           <div className="space-y-4">
-            <img src={logoImg} alt="Regent Holidays" className="h-12 object-contain" />
+            <img src={logoImg} alt="Regent Holidays" className="h-12 object-contain mx-auto md:mx-0" />
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               Regent Holidays Co., Ltd.
               <br />
