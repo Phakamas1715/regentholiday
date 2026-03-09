@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -69,6 +70,7 @@ export default function BookingPage() {
   const [accommodation, setAccommodation] = useState("");
   const [meal, setMeal] = useState("");
   const [specialRequest, setSpecialRequest] = useState("");
+  const [pdpaConsent, setPdpaConsent] = useState(false);
 
   const toggleTopic = (t: string) =>
     setSelectedTopics((prev) => prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]);
@@ -76,6 +78,10 @@ export default function BookingPage() {
   const handleSubmit = async () => {
     if (!contactName || !contactPhone || !orgName || !destination) {
       toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, องค์กร, ปลายทาง)");
+      return;
+    }
+    if (!pdpaConsent) {
+      toast.error("กรุณายินยอมนโยบายความเป็นส่วนตัว (PDPA) ก่อนส่งข้อมูล");
       return;
     }
 
@@ -352,8 +358,23 @@ export default function BookingPage() {
               </div>
             </div>
 
+            {/* PDPA Consent */}
+            <div className="flex items-start gap-3 p-4 rounded-lg border border-border bg-muted/30">
+              <Checkbox
+                id="pdpa"
+                checked={pdpaConsent}
+                onCheckedChange={(checked) => setPdpaConsent(checked === true)}
+                className="mt-0.5"
+              />
+              <label htmlFor="pdpa" className="font-body text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                ข้าพเจ้ายินยอมให้ บริษัท รีเจ้นท์ ฮอลิเดย์ จำกัด เก็บรวบรวม ใช้ และเปิดเผยข้อมูลส่วนบุคคลของข้าพเจ้า
+                เพื่อวัตถุประสงค์ในการจัดทำใบเสนอราคา ติดต่อประสานงาน และให้บริการนำเที่ยว
+                ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) <span className="text-destructive">*</span>
+              </label>
+            </div>
+
             {/* Submit */}
-            <Button variant="hero" size="lg" className="w-full text-lg py-6" onClick={handleSubmit} disabled={isSubmitting}>
+            <Button variant="hero" size="lg" className="w-full text-lg py-6" onClick={handleSubmit} disabled={isSubmitting || !pdpaConsent}>
               {isSubmitting ? (
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
               ) : (
