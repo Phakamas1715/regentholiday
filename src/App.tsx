@@ -1,18 +1,39 @@
+import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import BookingPage from "./pages/BookingPage.tsx";
-import PackagesPage from "./pages/PackagesPage.tsx";
-import ItineraryPage from "./pages/ItineraryPage.tsx";
-import AdminDashboard from "./pages/AdminDashboard.tsx";
-import CustomerDashboard from "./pages/CustomerDashboard.tsx";
-import AnalyticsDashboard from "./pages/AnalyticsDashboard.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import { AuthProvider } from "@/hooks/useAuth";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { Loader2 } from "lucide-react";
+
+// Public pages — direct imports (small, always needed)
+import Index from "./pages/Index";
+import BookingPage from "./pages/BookingPage";
+import PackagesPage from "./pages/PackagesPage";
+import NotFound from "./pages/NotFound";
+import LoginPage from "./pages/LoginPage";
+
+// Admin pages — lazy loaded (heavy: recharts, admin logic)
+const AdminDashboardPage = lazy(() => import("./pages/admin/AdminDashboardPage"));
+const AnalyticsPage = lazy(() => import("./pages/admin/AnalyticsPage"));
+
+// Customer pages — lazy loaded
+const CustomerDashboardPage = lazy(() => import("./pages/customer/CustomerDashboardPage"));
+
+// Other lazy pages
+const ItineraryPage = lazy(() => import("./pages/ItineraryPage"));
 
 const queryClient = new QueryClient();
+
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+    </div>
+  );
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -20,16 +41,48 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/booking" element={<BookingPage />} />
-          <Route path="/packages" element={<PackagesPage />} />
-          <Route path="/itinerary" element={<ItineraryPage />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/my-bookings" element={<CustomerDashboard />} />
-          <Route path="/analytics" element={<AnalyticsDashboard />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              {/* Public routes */}
+              <Route path="/" element={<Index />} />
+              <Route path="/booking" element={<BookingPage />} />
+              <Route path="/packages" element={<PackagesPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/itinerary" element={<ItineraryPage />} />
+
+              {/* Admin routes — lazy + protected */}
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <AdminDashboardPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/analytics"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <AnalyticsPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Customer routes — lazy + protected */}
+              <Route
+                path="/customer"
+                element={
+                  <ProtectedRoute>
+                    <CustomerDashboardPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
