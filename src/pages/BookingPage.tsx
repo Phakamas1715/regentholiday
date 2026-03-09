@@ -85,8 +85,13 @@ export default function BookingPage() {
 
   const handleSubmit = async () => {
     const finalDestination = destination === "__other__" ? customDestination : destination;
-    if (!contactName || !contactPhone || !orgName || !finalDestination) {
-      toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, องค์กร, ปลายทาง)");
+    const needsOrg = tripType === "group";
+    if (!contactName || !contactPhone || !finalDestination) {
+      toast.error("กรุณากรอกข้อมูลที่จำเป็น (ชื่อ, เบอร์โทร, ปลายทาง)");
+      return;
+    }
+    if (needsOrg && !orgName) {
+      toast.error("กรุณากรอกชื่อหน่วยงาน/องค์กร");
       return;
     }
     if (!pdpaConsent) {
@@ -101,7 +106,7 @@ export default function BookingPage() {
         contact_phone: contactPhone,
         contact_email: contactEmail || null,
         contact_line_id: contactLineId || null,
-        org_name: orgName,
+        org_name: orgName || contactName,
         org_type: (orgType || "other") as any,
         destination: finalDestination,
         transport_preference: tripType,
@@ -178,7 +183,8 @@ export default function BookingPage() {
               </div>
             </div>
 
-            {/* === Section: Organization === */}
+            {/* === Section: Organization (group only) === */}
+            {tripType === "group" && (
             <div className="space-y-4">
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">🏢 ข้อมูลองค์กร</h3>
               <div className="space-y-2">
@@ -202,6 +208,7 @@ export default function BookingPage() {
                 </div>
               </div>
             </div>
+            )}
 
             {/* === Section: Trip Details === */}
             <div className="space-y-4">
@@ -294,7 +301,8 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              {/* Travelers */}
+              {/* Travelers (group only) */}
+              {tripType === "group" && (
               <div className="space-y-2">
                 <Label className="font-heading font-semibold text-sm">จำนวนผู้เดินทาง (คน)</Label>
                 <div className="flex items-center gap-4 bg-card rounded-xl border border-border p-4">
@@ -309,6 +317,7 @@ export default function BookingPage() {
                   <span className="font-body text-muted-foreground">คน</span>
                 </div>
               </div>
+              )}
 
               {/* Budget */}
               <div className="space-y-3">
@@ -324,7 +333,8 @@ export default function BookingPage() {
               </div>
             </div>
 
-            {/* === Section: Study Objectives === */}
+            {/* === Section: Study Objectives (group only) === */}
+            {tripType === "group" && (
             <div className="space-y-4">
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">📚 วัตถุประสงค์ศึกษาดูงาน</h3>
 
@@ -364,8 +374,8 @@ export default function BookingPage() {
                 />
               </div>
             </div>
+            )}
 
-            {/* === Section: Preferences (optional) === */}
             <div className="space-y-4">
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">⚙️ ความต้องการเพิ่มเติม <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
