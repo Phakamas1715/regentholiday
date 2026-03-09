@@ -58,7 +58,7 @@ export function Footer() {
               </a>
               <a
                 href="mailto:kraiwitch.pawadee@regentholiday.com"
-                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors justify-center md:justify-start"
               >
                 <Mail className="h-4 w-4" />
                 kraiwitch.pawadee@regentholiday.com
