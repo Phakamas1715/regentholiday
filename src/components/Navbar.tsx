@@ -7,7 +7,7 @@ const navItems = [
   { label: "หน้าแรก", path: "/" },
   { label: "จองทัวร์", path: "/booking" },
   { label: "แพ็คเกจ", path: "/packages" },
-  { label: "เกี่ยวกับเรา", path: "#about" },
+  { label: "เกี่ยวกับเรา", path: "https://www.regentholiday.com/about", external: true },
 ];
 
 export function Navbar() {
