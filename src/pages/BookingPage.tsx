@@ -201,21 +201,30 @@ export default function BookingPage() {
 
               <div className="space-y-2">
                 <Label className="font-heading font-semibold text-sm">ปลายทาง *</Label>
-                <Select value={destination} onValueChange={setDestination}>
+                <Select value={destination} onValueChange={(val) => { setDestination(val); if (val !== "__other__") setCustomDestination(""); }}>
                   <SelectTrigger><SelectValue placeholder="เลือกจุดหมายปลายทาง" /></SelectTrigger>
                   <SelectContent>
                     {destinations.map((d) => (
                       <SelectItem key={d} value={d}>{d}</SelectItem>
                     ))}
+                    <SelectItem value="__other__">อื่นๆ (ระบุเอง)</SelectItem>
                   </SelectContent>
                 </Select>
+                {destination === "__other__" && (
+                  <Input
+                    placeholder="พิมพ์ปลายทางที่ต้องการ"
+                    value={customDestination}
+                    onChange={(e) => setCustomDestination(e.target.value)}
+                    className="mt-2"
+                  />
+                )}
                 <div className="flex flex-wrap gap-2">
                   {["เซี่ยงไฮ้ (จีน)", "โตเกียว (ญี่ปุ่น)", "โซล (เกาหลีใต้)"].map((d) => (
                     <Badge
                       key={d}
                       variant={destination === d ? "default" : "outline"}
                       className="cursor-pointer transition-colors"
-                      onClick={() => setDestination(d)}
+                      onClick={() => { setDestination(d); setCustomDestination(""); }}
                     >
                       {d}
                     </Badge>
