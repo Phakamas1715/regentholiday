@@ -287,7 +287,7 @@ export default function BookingPage() {
             {/* === Dates === */}
             <div className="space-y-4">
               <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📅 วันเดินทาง</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="font-heading font-semibold text-base">วันไป</Label>
                   <Popover>
