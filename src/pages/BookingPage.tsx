@@ -46,6 +46,7 @@ const tripTypes = [
   { value: "join", label: "จอยทริป", icon: Users, desc: "ร่วมกรุ๊ปที่เปิดรับ" },
 ];
 
+export default function BookingPage() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
