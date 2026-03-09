@@ -55,6 +55,7 @@ export default function BookingPage() {
   const [orgType, setOrgType] = useState("");
 
   // Trip
+  const [tripType, setTripType] = useState("group");
   const [destination, setDestination] = useState("");
   const [customDestination, setCustomDestination] = useState("");
   const [startDate, setStartDate] = useState<Date>();
