@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Navbar } from "@/components/Navbar";
 import { Star, Clock, MapPin, ArrowRight, Filter, Plane, Globe } from "lucide-react";
+import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 
 const packages = [
@@ -544,6 +545,7 @@ export default function PackagesPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

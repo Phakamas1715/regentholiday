@@ -6,6 +6,7 @@ import shanghaiImg from "@/assets/destination-shanghai.jpg";
 import japanImg from "@/assets/destination-japan.jpg";
 import koreaImg from "@/assets/destination-korea.jpg";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 const features = [
   { icon: Sparkles, title: "ทัวร์คุณภาพ", desc: "โปรแกรมทัวร์ต่างประเทศคัดสรรพิเศษ จัดโดยทีมงานมืออาชีพ" },
@@ -142,12 +143,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-10 bg-foreground">
-        <div className="container text-center">
-          <p className="font-body text-sm text-muted">© 2026 Regent Holiday — ทัวร์ต่างประเทศคุณภาพ</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
