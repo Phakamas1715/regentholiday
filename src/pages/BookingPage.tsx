@@ -202,6 +202,28 @@ export default function BookingPage() {
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">✈️ รายละเอียดทริป</h3>
 
               <div className="space-y-2">
+                <Label className="font-heading font-semibold text-sm">ประเภททริป *</Label>
+                <div className="grid grid-cols-3 gap-2">
+                  {tripTypes.map((t) => (
+                    <div
+                      key={t.value}
+                      onClick={() => setTripType(t.value)}
+                      className={cn(
+                        "cursor-pointer rounded-xl border-2 p-3 text-center transition-all",
+                        tripType === t.value
+                          ? "border-primary bg-primary/10"
+                          : "border-border hover:border-primary/50"
+                      )}
+                    >
+                      <t.icon className={cn("h-5 w-5 mx-auto mb-1", tripType === t.value ? "text-primary" : "text-muted-foreground")} />
+                      <p className="font-heading text-sm font-semibold">{t.label}</p>
+                      <p className="font-body text-xs text-muted-foreground">{t.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
                 <Label className="font-heading font-semibold text-sm">ปลายทาง *</Label>
                 <Select value={destination} onValueChange={(val) => { setDestination(val); if (val !== "__other__") setCustomDestination(""); }}>
                   <SelectTrigger><SelectValue placeholder="เลือกจุดหมายปลายทาง" /></SelectTrigger>
