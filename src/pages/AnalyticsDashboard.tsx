@@ -221,8 +221,7 @@ export default function AnalyticsDashboard() {
               </table>
             </div>
           </div>
-        </main>
-      </div>
-    </div>
+        </div>
+    </AdminLayout>
   );
 }
