@@ -2,12 +2,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { AdminLayout } from "@/components/AdminLayout";
 import {
   BarChart3, TrendingUp, TrendingDown, DollarSign, Target, Star,
-  Users, ArrowRight, LayoutDashboard, UserPlus, FileText, CalendarCheck,
-  Settings, MapPin, Menu, X, LogOut,
+  Users, ArrowRight,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar,
