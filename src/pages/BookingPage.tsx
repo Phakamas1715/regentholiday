@@ -154,6 +154,18 @@ export default function BookingPage() {
 
       if (error) throw error;
 
+      // Send Discord notification (fire-and-forget)
+      supabase.functions.invoke("notify-discord", {
+        body: {
+          contact_name: contactName,
+          org_name: orgName || contactName,
+          destination: finalDestination,
+          num_travelers: travelers,
+          budget_per_person: budget[0],
+          contact_phone: contactPhone,
+        },
+      }).catch((err) => console.error("Discord notify failed:", err));
+
       toast.success("ส่งคำขอเรียบร้อยแล้ว! ทีมงานจะติดต่อกลับภายใน 24 ชม.");
       navigate("/packages");
     } catch (err) {
