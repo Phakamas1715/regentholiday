@@ -1,7 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import { Globe, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import logoImg from "@/assets/logo-regent.png";
 
 const navItems = [
   { label: "หน้าแรก", path: "/" },
@@ -18,8 +19,7 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2 font-heading font-bold text-xl text-foreground">
-          <Globe className="h-6 w-6 text-primary" />
-          <span>Regent Holiday</span>
+          <img src={logoImg} alt="Regent Holidays" className="h-10 object-contain" />
         </Link>
 
         {/* Desktop nav */}
