@@ -328,7 +328,8 @@ export default function BookingPage() {
               </div>
             </div>
 
-            {/* === Section: Study Objectives === */}
+            {/* === Section: Study Objectives (group only) === */}
+            {tripType === "group" && (
             <div className="space-y-4">
               <h3 className="font-heading font-semibold text-foreground border-b border-border pb-2">📚 วัตถุประสงค์ศึกษาดูงาน</h3>
 
