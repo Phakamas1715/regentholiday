@@ -13,16 +13,6 @@ import {
   Legend,
 } from "recharts";
 
-const sidebarItems = [
-  { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
-  { icon: UserPlus, label: "Leads" },
-  { icon: FileText, label: "Quotations" },
-  { icon: CalendarCheck, label: "Bookings" },
-  { icon: Users, label: "Customers" },
-  { icon: BarChart3, label: "Analytics", active: true },
-  { icon: Settings, label: "Settings" },
-];
-
 const kpis = [
   { label: "Total Revenue", value: "฿2.4M", change: "+18%", up: true, icon: DollarSign },
   { label: "Conversion Rate", value: "32%", change: "+5%", up: true, icon: Target },
