@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
           {/* Company Info */}
           <div className="space-y-4">
             <img src={logoImg} alt="Regent Holidays" className="h-12 object-contain" />
