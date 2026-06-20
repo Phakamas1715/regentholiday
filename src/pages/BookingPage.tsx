@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import heroImage from "@/assets/hero-international.jpg";
+import heroImage from "@/assets/hero-international.png";
 
 const destinations = [
   "เซี่ยงไฮ้ (จีน)", "ปักกิ่ง (จีน)", "กวางโจว (จีน)", "โตเกียว (ญี่ปุ่น)", "โอซาก้า (ญี่ปุ่น)",
@@ -197,8 +197,12 @@ export default function BookingPage() {
         </div>
 
         {/* Right form panel */}
-        <div className="flex-1 p-4 sm:p-6 md:p-12 lg:p-16">
-          <div className="max-w-xl mx-auto space-y-8 sm:space-y-10">
+        <div className="flex-1 p-4 sm:p-6 md:p-12 lg:p-16 relative overflow-hidden bg-background">
+          {/* Subtle glowing mesh blobs behind the form */}
+          <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10 animate-pulse" style={{ animationDuration: '10s' }} />
+          <div className="absolute bottom-1/4 left-10 w-[300px] h-[300px] bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+
+          <div className="max-w-xl mx-auto space-y-8 sm:space-y-10 relative z-10">
             <div>
               <h1 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">ขอใบเสนอราคา</h1>
               <p className="font-body text-muted-foreground text-base">แค่เลือกตัวเลือก แล้วกรอกข้อมูลติดต่อ ทีมงานจัดให้ภายใน 24 ชม.</p>

@@ -336,7 +336,11 @@ export default function PackagesPage() {
   const featuredPackages = packages.filter((p) => p.featured);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Decorative background glows */}
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse" style={{ animationDuration: '10s' }} />
+      <div className="absolute bottom-1/4 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] pointer-events-none -z-10 animate-pulse" style={{ animationDuration: '15s' }} />
+
       <Navbar />
       <div className="pt-20 pb-12">
         <div className="container">

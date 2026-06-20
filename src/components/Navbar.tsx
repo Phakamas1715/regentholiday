@@ -8,6 +8,7 @@ import logoImg from "@/assets/logo-regent.png";
 
 const navItems = [
   { label: "หน้าแรก", path: "/" },
+  { label: "ลงทะเบียน AI Workshop", path: "/register" },
   { label: "จองทัวร์", path: "/booking" },
   { label: "แพ็คเกจ", path: "/packages" },
   { label: "เกี่ยวกับเรา", path: "https://www.regentholiday.com/about", external: true },

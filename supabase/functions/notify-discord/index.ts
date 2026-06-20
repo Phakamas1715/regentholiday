@@ -18,7 +18,7 @@ serve(async (req) => {
 
     const { contact_name, org_name, destination, num_travelers, budget_per_person, contact_phone } = await req.json();
 
-    const adminUrl = 'https://regentholiday.lovable.app/admin';
+    const adminUrl = 'https://bookingworkshop-agent.lovable.app/admin';
 
     const embed = {
       title: '📋 ใบเสนอราคาใหม่!',

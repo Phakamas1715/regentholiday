@@ -14,6 +14,7 @@ import BookingPage from "./pages/BookingPage";
 import PackagesPage from "./pages/PackagesPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 // Admin pages — lazy loaded (heavy: recharts, admin logic)
 const AdminDashboardPage = lazy(() => import("./pages/admin/AdminDashboardPage"));
@@ -21,6 +22,7 @@ const AnalyticsPage = lazy(() => import("./pages/admin/AnalyticsPage"));
 const TourProgramsPage = lazy(() => import("./pages/admin/TourProgramsPage"));
 const QuotationsListPage = lazy(() => import("./pages/admin/QuotationsListPage"));
 const QuotationPreviewPage = lazy(() => import("./pages/admin/QuotationPreviewPage"));
+const AdminCheckinPage = lazy(() => import("./pages/admin/AdminCheckinPage"));
 
 // Customer pages — lazy loaded
 const CustomerDashboardPage = lazy(() => import("./pages/customer/CustomerDashboardPage"));
@@ -52,6 +54,7 @@ const App = () => (
               <Route path="/booking" element={<BookingPage />} />
               <Route path="/packages" element={<PackagesPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/itinerary" element={<ItineraryPage />} />
 
               {/* Admin routes — lazy + protected */}
@@ -92,6 +95,14 @@ const App = () => (
                 element={
                   <ProtectedRoute requireAdmin>
                     <QuotationPreviewPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin/checkin"
+                element={
+                  <ProtectedRoute requireAdmin>
+                    <AdminCheckinPage />
                   </ProtectedRoute>
                 }
               />
