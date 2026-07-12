@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Shield, Compass, ArrowRight, Star } from "lucide-react";
-import heroImage from "@/assets/hero-travel.png";
+import heroImage from "@/assets/hero-tours.jpg";
 import loginBg from "@/assets/login-bg.png";
 import shanghaiImg from "@/assets/destination-shanghai.jpg";
 import japanImg from "@/assets/destination-japan.jpg";
