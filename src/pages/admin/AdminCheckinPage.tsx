@@ -5,9 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase as supabaseClient } from "@/integrations/supabase/client";
+// Bypass generated types for tables/columns not yet in schema (registrations, coupons, checkins, payments)
+const supabase: any = supabaseClient;
 import { toast } from "sonner";
-import { Camera, Search, User, CheckCircle2, AlertTriangle, CreditCard, Clock, MessageSquare, ShieldAlert, Check, X } from "lucide-react";
+import { Camera, Search, User, CheckCircle2, AlertTriangle, CreditCard, Clock, MessageSquare, ShieldAlert, Check, X, Loader2 } from "lucide-react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 type Registration = {
