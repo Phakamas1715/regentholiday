@@ -1,6 +1,6 @@
 // Navbar component
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, User, Shield, MessageCircle } from "lucide-react";
+import { Menu, X, LogOut, User, Shield, MessageCircle, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
@@ -8,7 +8,6 @@ import logoImg from "@/assets/logo-regent.png";
 
 const navItems = [
   { label: "หน้าแรก", path: "/" },
-  { label: "ลงทะเบียน AI Workshop", path: "/register" },
   { label: "จองทัวร์", path: "/booking" },
   { label: "แพ็คเกจ", path: "/packages" },
   { label: "เกี่ยวกับเรา", path: "https://www.regentholiday.com/about", external: true },
