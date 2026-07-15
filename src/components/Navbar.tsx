@@ -155,10 +155,19 @@ export function Navbar() {
               <a href="https://line.me/R/ti/p/@ugm3067r" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-green-600 hover:text-green-700 font-semibold">
                 💬 แอดไลน์ปรึกษาฟรี
               </a>
+              <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-foreground hover:text-primary">
+                🔑 เข้าสู่ระบบ
+              </Link>
               <Link to="/booking" onClick={() => setMobileOpen(false)}>
                 <Button variant="hero" className="w-full mt-2">เริ่มวางแผนทริป</Button>
               </Link>
             </>
+          )}
+        </div>
+      )}
+    </nav>
+  );
+}
           )}
         </div>
       )}
