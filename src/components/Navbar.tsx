@@ -88,6 +88,12 @@ export function Navbar() {
                   แอดไลน์
                 </Button>
               </a>
+              <Link to="/login">
+                <Button variant="ghost" size="sm" className="gap-1">
+                  <LogIn className="h-4 w-4" />
+                  เข้าสู่ระบบ
+                </Button>
+              </Link>
               <Link to="/booking">
                 <Button variant="hero" size="sm">เริ่มวางแผนทริป</Button>
               </Link>
