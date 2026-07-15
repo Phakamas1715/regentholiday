@@ -1,6 +1,6 @@
 // Navbar component
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, User, Shield, MessageCircle } from "lucide-react";
+import { Menu, X, LogOut, User, Shield, MessageCircle, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
@@ -8,7 +8,6 @@ import logoImg from "@/assets/logo-regent.png";
 
 const navItems = [
   { label: "หน้าแรก", path: "/" },
-  { label: "ลงทะเบียน AI Workshop", path: "/register" },
   { label: "จองทัวร์", path: "/booking" },
   { label: "แพ็คเกจ", path: "/packages" },
   { label: "เกี่ยวกับเรา", path: "https://www.regentholiday.com/about", external: true },
@@ -89,6 +88,12 @@ export function Navbar() {
                   แอดไลน์
                 </Button>
               </a>
+              <Link to="/login">
+                <Button variant="ghost" size="sm" className="gap-1">
+                  <LogIn className="h-4 w-4" />
+                  เข้าสู่ระบบ
+                </Button>
+              </Link>
               <Link to="/booking">
                 <Button variant="hero" size="sm">เริ่มวางแผนทริป</Button>
               </Link>
@@ -150,6 +155,9 @@ export function Navbar() {
               <a href="https://line.me/R/ti/p/@ugm3067r" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-green-600 hover:text-green-700 font-semibold">
                 💬 แอดไลน์ปรึกษาฟรี
               </a>
+              <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-foreground hover:text-primary">
+                🔑 เข้าสู่ระบบ
+              </Link>
               <Link to="/booking" onClick={() => setMobileOpen(false)}>
                 <Button variant="hero" className="w-full mt-2">เริ่มวางแผนทริป</Button>
               </Link>
