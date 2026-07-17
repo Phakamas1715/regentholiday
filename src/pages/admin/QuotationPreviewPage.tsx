@@ -31,6 +31,14 @@ export default function QuotationPreviewPage() {
     if (id) fetchData();
   }, [id]);
 
+  useEffect(() => {
+    if (quotation) {
+      const prev = document.title;
+      document.title = `${quotation.quotation_number} - ใบเสนอราคา`;
+      return () => { document.title = prev; };
+    }
+  }, [quotation]);
+
   const fetchData = async () => {
     const { data: q } = await supabase.from("quotations").select("*").eq("id", id!).single();
     if (!q) { setLoading(false); return; }
