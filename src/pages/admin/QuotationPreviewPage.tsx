@@ -128,7 +128,7 @@ export default function QuotationPreviewPage() {
       </div>
 
       {/* Printable area */}
-      <div ref={printRef} className="max-w-4xl mx-auto bg-white p-6 md:p-10 print:p-8 print:max-w-none">
+      <div ref={printRef} className="print-area max-w-4xl mx-auto bg-white p-6 md:p-10 print:p-0 print:max-w-none shadow-sm">
         {/* Header */}
         <div className="flex items-start justify-between border-b-2 border-primary pb-4 mb-6">
           <div className="flex items-center gap-4">
