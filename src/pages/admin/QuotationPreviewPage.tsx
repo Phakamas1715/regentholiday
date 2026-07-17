@@ -211,7 +211,7 @@ export default function QuotationPreviewPage() {
             <h3 className="font-heading font-bold text-foreground mb-3 text-lg">📅 โปรแกรมการเดินทาง</h3>
             <div className="space-y-4">
               {itinerary.map((day, i) => (
-                <div key={i} className="border-l-4 border-primary pl-4 py-2">
+                <div key={i} className="avoid-break border-l-4 border-primary pl-4 py-2">
                   <h4 className="font-heading font-bold text-foreground">
                     วันที่ {day.day || i + 1}: {day.title}
                   </h4>
