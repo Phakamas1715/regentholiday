@@ -31,14 +31,6 @@ export default function QuotationPreviewPage() {
     if (id) fetchData();
   }, [id]);
 
-  useEffect(() => {
-    if (quotation) {
-      const prev = document.title;
-      document.title = `${quotation.quotation_number} - ใบเสนอราคา`;
-      return () => { document.title = prev; };
-    }
-  }, [quotation]);
-
   const fetchData = async () => {
     const { data: q } = await supabase.from("quotations").select("*").eq("id", id!).single();
     if (!q) { setLoading(false); return; }
@@ -128,7 +120,7 @@ export default function QuotationPreviewPage() {
       </div>
 
       {/* Printable area */}
-      <div ref={printRef} className="print-area max-w-4xl mx-auto bg-white p-6 md:p-10 print:p-0 print:max-w-none shadow-sm">
+      <div ref={printRef} className="max-w-4xl mx-auto bg-white p-6 md:p-10 print:p-8 print:max-w-none">
         {/* Header */}
         <div className="flex items-start justify-between border-b-2 border-primary pb-4 mb-6">
           <div className="flex items-center gap-4">
@@ -211,7 +203,7 @@ export default function QuotationPreviewPage() {
             <h3 className="font-heading font-bold text-foreground mb-3 text-lg">📅 โปรแกรมการเดินทาง</h3>
             <div className="space-y-4">
               {itinerary.map((day, i) => (
-                <div key={i} className="avoid-break border-l-4 border-primary pl-4 py-2">
+                <div key={i} className="border-l-4 border-primary pl-4 py-2">
                   <h4 className="font-heading font-bold text-foreground">
                     วันที่ {day.day || i + 1}: {day.title}
                   </h4>
