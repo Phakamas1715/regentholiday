@@ -22,7 +22,7 @@ const AnalyticsPage = lazy(() => import("./pages/admin/AnalyticsPage"));
 const TourProgramsPage = lazy(() => import("./pages/admin/TourProgramsPage"));
 const QuotationsListPage = lazy(() => import("./pages/admin/QuotationsListPage"));
 const QuotationPreviewPage = lazy(() => import("./pages/admin/QuotationPreviewPage"));
-const AdminCheckinPage = lazy(() => import("./pages/admin/AdminCheckinPage"));
+
 
 // Customer pages — lazy loaded
 const CustomerDashboardPage = lazy(() => import("./pages/customer/CustomerDashboardPage"));
@@ -95,14 +95,6 @@ const App = () => (
                 element={
                   <ProtectedRoute requireAdmin>
                     <QuotationPreviewPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/checkin"
-                element={
-                  <ProtectedRoute requireAdmin>
-                    <AdminCheckinPage />
                   </ProtectedRoute>
                 }
               />
