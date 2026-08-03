@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import {
   LayoutDashboard, FileText, BarChart3,
-  Settings, Menu, X, LogOut, Receipt,
+  Menu, X, LogOut, Receipt,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ const sidebarItems = [
   { icon: Receipt, label: "ใบเสนอราคา", path: "/admin/quotations" },
   { icon: FileText, label: "โปรแกรมทัวร์", path: "/admin/programs" },
   { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
-  { icon: Settings, label: "ตั้งค่า", path: "/admin/settings" },
+  
 ];
 
 export function AdminLayout({ children }: { children: ReactNode }) {
