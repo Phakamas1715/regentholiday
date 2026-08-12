@@ -6,47 +6,50 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 210 29% 15%;
+    --background: 40 60% 99%;
+    --foreground: 212 45% 16%;
 
-    --card: 210 20% 98%;
-    --card-foreground: 210 29% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 212 45% 16%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 29% 15%;
+    --popover-foreground: 212 45% 16%;
 
-    --primary: 18 100% 60%;
+    --primary: 18 100% 58%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 209 100% 27%;
+    --secondary: 205 95% 42%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 210 10% 45%;
+    --muted: 195 60% 96%;
+    --muted-foreground: 210 16% 42%;
 
-    --accent: 193 100% 43%;
+    --accent: 174 85% 42%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 145 63% 49%;
+    --highlight: 44 100% 55%;
+    --highlight-foreground: 212 45% 16%;
+
+    --success: 150 75% 42%;
     --success-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 352 90% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 90%;
-    --input: 210 20% 90%;
-    --ring: 18 100% 60%;
+    --border: 200 40% 88%;
+    --input: 200 40% 88%;
+    --ring: 18 100% 58%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 209 100% 27%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 18 100% 60%;
+    --sidebar-background: 205 95% 34%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 18 100% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 209 80% 35%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 209 60% 40%;
-    --sidebar-ring: 18 100% 60%;
+    --sidebar-accent: 195 90% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 200 70% 48%;
+    --sidebar-ring: 44 100% 55%;
 
     --font-heading: 'Prompt', sans-serif;
     --font-body: 'Sarabun', sans-serif;
@@ -73,11 +76,15 @@
   }
 
   .bg-gradient-hero {
-    background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(209 100% 20%) 100%);
+    background: linear-gradient(135deg, hsl(205 95% 42%) 0%, hsl(174 85% 42%) 100%);
   }
 
   .bg-gradient-cta {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(30 100% 55%) 100%);
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(44 100% 55%) 100%);
+  }
+
+  .bg-gradient-sunny {
+    background: linear-gradient(135deg, hsl(44 100% 60%) 0%, hsl(18 100% 60%) 100%);
   }
 
   .shadow-card {
