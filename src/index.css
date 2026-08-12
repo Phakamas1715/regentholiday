@@ -42,14 +42,14 @@
 
     --radius: 0.75rem;
 
-    --sidebar-background: 209 100% 27%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 18 100% 60%;
+    --sidebar-background: 205 95% 34%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 18 100% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 209 80% 35%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 209 60% 40%;
-    --sidebar-ring: 18 100% 60%;
+    --sidebar-accent: 195 90% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 200 70% 48%;
+    --sidebar-ring: 44 100% 55%;
 
     --font-heading: 'Prompt', sans-serif;
     --font-body: 'Sarabun', sans-serif;
@@ -76,11 +76,15 @@
   }
 
   .bg-gradient-hero {
-    background: linear-gradient(135deg, hsl(var(--secondary)) 0%, hsl(209 100% 20%) 100%);
+    background: linear-gradient(135deg, hsl(205 95% 42%) 0%, hsl(174 85% 42%) 100%);
   }
 
   .bg-gradient-cta {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(30 100% 55%) 100%);
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(44 100% 55%) 100%);
+  }
+
+  .bg-gradient-sunny {
+    background: linear-gradient(135deg, hsl(44 100% 60%) 0%, hsl(18 100% 60%) 100%);
   }
 
   .shadow-card {
