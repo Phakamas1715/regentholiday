@@ -75,68 +75,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* AI Workshop Promotion Banner */}
-      <section className="py-16 relative z-10 border-t border-b border-white/5 bg-slate-950/80">
-        {/* Ambient glow orbs */}
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[350px] h-[350px] bg-primary/10 rounded-full blur-[100px] pointer-events-none -z-10 animate-pulse" />
-        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-accent/10 rounded-full blur-[100px] pointer-events-none -z-10" />
-
-        <div className="container max-w-4xl px-4 mx-auto">
-          <div className="relative border border-primary/20 bg-slate-900/60 backdrop-blur-2xl rounded-3xl p-8 shadow-[0_0_50px_rgba(249,115,22,0.15)] overflow-hidden">
-            {/* Corner tech accents */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/10 to-transparent pointer-events-none" />
-
-            <div className="flex flex-col md:flex-row gap-8 items-center justify-between relative z-10">
-              <div className="space-y-4 max-w-xl">
-                <div className="flex flex-wrap gap-2">
-                  <Badge className="bg-red-500/10 text-red-400 border-red-500/20 text-[10px] font-heading font-bold uppercase tracking-wider py-1 px-3.5 rounded-full animate-pulse">
-                    🔥 รับจำนวนจำกัด
-                  </Badge>
-                  <Badge className="bg-primary/10 text-primary border-primary/20 text-[10px] font-heading font-bold uppercase tracking-wider py-1 px-3.5 rounded-full">
-                    ⚡ มัดจำเพียง 2,999 บาท
-                  </Badge>
-                </div>
-
-                <h2 className="font-heading text-2xl md:text-3xl font-black text-white leading-tight">
-                  Smart Business AI Workshop 2026<br />
-                  <span className="text-gradient-primary">ปฏิบัติการสร้าง AI Agent สำหรับธุรกิจ</span>
-                </h2>
-
-                <p className="font-body text-slate-350 text-xs md:text-sm leading-relaxed">
-                  หลักสูตรพิเศษเพื่อยกระดับธุรกิจท่องเที่ยวและบริการด้วยปัญญาประดิษฐ์ สร้างระบบตอบลูกค้าออโต้ ปิดการขาย บิวท์บอทประจำการ LINE OA ของคุณจริงใน 1 วัน!
-                </p>
-
-                <div className="space-y-2.5 font-body text-xs text-slate-300 bg-white/[0.02] border border-white/5 rounded-2xl p-4 md:p-5">
-                  <div className="flex items-start gap-2">
-                    <span className="text-primary font-bold">1.</span>
-                    <p>ผู้ลงทะเบียนจองสิทธิ์ ต้องชำระเงินมัดจำจำนวน <strong className="text-yellow-500 font-extrabold text-sm">2,999 บาท</strong> เพื่อยืนยันการจองที่นั่งสัมมนา (รับสิทธิ์ส่วนลดเวิร์กช็อปเรียนฟรี AI มูลค่า 3,000 บ.)</p>
-                  </div>
-                  <div className="flex items-start gap-2 border-t border-white/5 pt-2.5">
-                    <span className="text-primary font-bold">2.</span>
-                    <p><strong>เงื่อนไขสิทธิ์ส่วนลด:</strong> ก่อนเข้างานสัมมนา ผู้สมัครต้องแสดง/ยื่นคูปอง QR Code จากในระบบ LINE ต่อเจ้าหน้าที่เพื่อยืนยันสิทธิ์ลดในการเข้าห้องสัมมนา</p>
-                  </div>
-                  <div className="flex items-start gap-2 border-t border-white/5 pt-2.5">
-                    <span className="text-primary font-bold">3.</span>
-                    <p className="text-red-400 font-semibold">รับจำนวนจำกัดเฉพาะผู้ที่ทำรายการจองและโอนชำระเงินมัดจำล่วงหน้าตามลำดับคิวเท่านั้น</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="shrink-0 w-full md:w-auto text-center">
-                <Link to="/register">
-                  <Button variant="hero" size="lg" className="w-full md:w-auto text-sm px-8 py-7 shadow-lg shadow-primary/25 hover:shadow-primary/45 transition-all font-heading font-black tracking-wider flex items-center justify-center gap-2">
-                    ลงทะเบียนจองสิทธิ์ AI
-                    <ArrowRight className="h-5 w-5" />
-                  </Button>
-                </Link>
-                <p className="text-[10px] text-slate-500 font-body mt-2.5">
-                  * ต้องดำเนินการยืนยันตัวตนผ่านบัญชี LINE
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Value Propositions */}
       <section className="py-20 relative z-10 border-t border-white/5">
