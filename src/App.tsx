@@ -14,7 +14,6 @@ import BookingPage from "./pages/BookingPage";
 import PackagesPage from "./pages/PackagesPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 
 // Admin pages — lazy loaded (heavy: recharts, admin logic)
 const AdminDashboardPage = lazy(() => import("./pages/admin/AdminDashboardPage"));
@@ -54,7 +53,6 @@ const App = () => (
               <Route path="/booking" element={<BookingPage />} />
               <Route path="/packages" element={<PackagesPage />} />
               <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
               <Route path="/itinerary" element={<ItineraryPage />} />
 
               {/* Admin routes — lazy + protected */}
