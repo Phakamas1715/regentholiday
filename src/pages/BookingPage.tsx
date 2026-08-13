@@ -527,7 +527,16 @@ export default function BookingPage() {
                         : "border-border text-foreground hover:border-primary/50"
                     )}
                   >
-                    <span className="text-lg">{selectedSpecialRequests.includes(r) ? "✅" : "⬜"}</span>
+                    <span
+                      className={cn(
+                        "h-5 w-5 shrink-0 rounded border-2 flex items-center justify-center",
+                        selectedSpecialRequests.includes(r)
+                          ? "bg-primary border-primary text-primary-foreground"
+                          : "border-border"
+                      )}
+                    >
+                      {selectedSpecialRequests.includes(r) && <Check className="h-3.5 w-3.5" />}
+                    </span>
                     {r}
                   </button>
                 ))}
