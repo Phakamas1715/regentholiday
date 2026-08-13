@@ -9,7 +9,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Badge } from "@/components/ui/badge";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { CalendarIcon, Minus, Plus, Users, Wallet, Building2, GraduationCap, Send, Loader2, UserRound, UsersRound, Phone, Mail, MessageCircle } from "lucide-react";
+import { CalendarIcon, Minus, Plus, Users, Wallet, Building2, GraduationCap, Send, Loader2, UserRound, UsersRound, Phone, Mail, MessageCircle, Plane, Globe, CalendarDays, BookOpen, Hotel, MessageSquare, PhoneCall, ChevronDown, Check } from "lucide-react";
 import { format } from "date-fns";
 import { th } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -210,7 +210,7 @@ export default function BookingPage() {
 
             {/* === Trip Type === */}
             <div className="space-y-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">✈️ ประเภททริป</h3>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><Plane className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />ประเภททริป</h3>
               <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {tripTypes.map((t) => (
                   <button
@@ -234,7 +234,7 @@ export default function BookingPage() {
 
             {/* === Destination === */}
             <div className="space-y-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🌍 ปลายทาง</h3>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><Globe className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />ปลายทาง</h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกปลายทางที่ต้องการ</p>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
                 {popularDestinations.map((d) => (
@@ -280,7 +280,7 @@ export default function BookingPage() {
               )}
               {destinations.filter(d => !popularDestinations.includes(d)).length > 0 && (
                 <details className="group">
-                  <summary className="font-body text-sm text-primary cursor-pointer hover:underline">ดูปลายทางทั้งหมด ({destinations.length} แห่ง)</summary>
+                  <summary className="font-body text-sm text-primary cursor-pointer hover:underline inline-flex items-center gap-1 list-none marker:hidden [&::-webkit-details-marker]:hidden"><ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />ดูปลายทางทั้งหมด ({destinations.length} แห่ง)</summary>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3">
                     {destinations.filter(d => !popularDestinations.includes(d)).map((d) => (
                       <button
@@ -304,7 +304,7 @@ export default function BookingPage() {
 
             {/* === Dates === */}
             <div className="space-y-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📅 วันเดินทาง</h3>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><CalendarDays className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />วันเดินทาง</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="font-heading font-semibold text-base">วันไป</Label>
@@ -340,7 +340,7 @@ export default function BookingPage() {
             {/* === Travelers (group) === */}
             {tripType === "group" && (
               <div className="space-y-4">
-                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">👥 จำนวนผู้เดินทาง</h3>
+                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><Users className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />จำนวนผู้เดินทาง</h3>
                 <p className="font-body text-sm text-muted-foreground">แตะเลือกจำนวน หรือกด +/- ปรับเอง</p>
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
                   {travelerPresets.map((n) => (
@@ -408,7 +408,7 @@ export default function BookingPage() {
             {/* === Organization (group only) === */}
             {tripType === "group" && (
               <div className="space-y-4">
-                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🏢 ข้อมูลองค์กร</h3>
+                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><Building2 className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />ข้อมูลองค์กร</h3>
                 <div className="space-y-2">
                   <Label className="font-heading font-semibold text-base">ชื่อหน่วยงาน *</Label>
                   <Input placeholder="ชื่อหน่วยงาน" value={orgName} onChange={(e) => setOrgName(e.target.value)} className="text-base h-12 rounded-xl" />
@@ -440,7 +440,7 @@ export default function BookingPage() {
             {/* === Study Topics (group only) === */}
             {tripType === "group" && (
               <div className="space-y-4">
-                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📚 หัวข้อศึกษาดูงาน</h3>
+                <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><BookOpen className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />หัวข้อศึกษาดูงาน</h3>
                 <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายหัวข้อ</p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
                   {studyTopicOptions.map((t) => (
@@ -464,7 +464,7 @@ export default function BookingPage() {
 
             {/* === Accommodation & Meal === */}
             <div className="space-y-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">🏨 ที่พักและอาหาร <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><Hotel className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />ที่พักและอาหาร <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
               
               <div className="space-y-2">
                 <Label className="font-heading font-semibold text-base">ระดับที่พัก</Label>
@@ -512,7 +512,7 @@ export default function BookingPage() {
 
             {/* === Special Requests === */}
             <div className="space-y-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">💬 คำขอพิเศษ <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><MessageSquare className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />คำขอพิเศษ <span className="font-body text-xs text-muted-foreground font-normal">(ไม่บังคับ)</span></h3>
               <p className="font-body text-sm text-muted-foreground">แตะเลือกได้หลายข้อ</p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                 {specialRequestOptions.map((r) => (
@@ -527,7 +527,16 @@ export default function BookingPage() {
                         : "border-border text-foreground hover:border-primary/50"
                     )}
                   >
-                    <span className="text-lg">{selectedSpecialRequests.includes(r) ? "✅" : "⬜"}</span>
+                    <span
+                      className={cn(
+                        "h-5 w-5 shrink-0 rounded border-2 flex items-center justify-center",
+                        selectedSpecialRequests.includes(r)
+                          ? "bg-primary border-primary text-primary-foreground"
+                          : "border-border"
+                      )}
+                    >
+                      {selectedSpecialRequests.includes(r) && <Check className="h-3.5 w-3.5" />}
+                    </span>
                     {r}
                   </button>
                 ))}
@@ -536,7 +545,7 @@ export default function BookingPage() {
 
             {/* === Contact Info === */}
             <div className="space-y-4">
-              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2">📞 ข้อมูลผู้ติดต่อ</h3>
+              <h3 className="font-heading text-lg font-semibold text-foreground border-b border-border pb-2"><PhoneCall className="inline h-5 w-5 mr-1.5 -mt-0.5 text-primary" />ข้อมูลผู้ติดต่อ</h3>
               <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">
                   <Label className="font-heading font-semibold text-base">ชื่อ-สกุล *</Label>

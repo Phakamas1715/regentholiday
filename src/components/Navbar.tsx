@@ -84,7 +84,7 @@ export function Navbar() {
           ) : (
             <>
               <a href="https://line.me/R/ti/p/@ugm3067r" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="sm" className="gap-1 text-green-600 border-green-600 hover:bg-green-50">
+                <Button variant="outline" size="sm" className="gap-1 text-success border-success hover:bg-success/10">
                   <MessageCircle className="h-4 w-4" />
                   แอดไลน์
                 </Button>
@@ -135,11 +135,11 @@ export function Navbar() {
             <>
               {isAdmin && (
                 <Link to="/admin" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-primary font-semibold">
-                  🛡️ Admin Panel
+                  <Shield className="inline h-4 w-4 mr-1.5 -mt-0.5" />Admin Panel
                 </Link>
               )}
               <Link to="/customer" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-foreground hover:text-primary">
-                👤 บัญชีของฉัน
+                <User className="inline h-4 w-4 mr-1.5 -mt-0.5" />บัญชีของฉัน
               </Link>
               <Button variant="outline" className="w-full mt-2" onClick={() => { handleSignOut(); setMobileOpen(false); }}>
                 ออกจากระบบ
@@ -147,8 +147,8 @@ export function Navbar() {
             </>
           ) : (
             <>
-              <a href="https://line.me/R/ti/p/@ugm3067r" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-green-600 hover:text-green-700 font-semibold">
-                💬 แอดไลน์ปรึกษาฟรี
+              <a href="https://line.me/R/ti/p/@ugm3067r" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="block py-2 font-body text-base text-success hover:opacity-80 font-semibold">
+                <MessageCircle className="inline h-4 w-4 mr-1.5 -mt-0.5" />แอดไลน์ปรึกษาฟรี
               </a>
               <Link to="/booking" onClick={() => setMobileOpen(false)}>
                 <Button variant="hero" className="w-full mt-2">เริ่มวางแผนทริป</Button>
