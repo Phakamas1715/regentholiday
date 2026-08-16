@@ -131,7 +131,7 @@ export default function BookingPage() {
 
     setIsSubmitting(true);
     try {
-      const { error } = await supabase.from("leads").insert({
+      const { data: inserted, error } = await supabase.from("leads").insert({
         contact_name: contactName,
         contact_phone: contactPhone,
         contact_email: contactEmail || null,
@@ -150,9 +150,10 @@ export default function BookingPage() {
         accommodation_level: accommodation || null,
         meal_preference: meal || null,
         special_requests: selectedSpecialRequests.length > 0 ? selectedSpecialRequests.join(", ") : null,
-      });
+      }).select("id, created_at").maybeSingle();
 
       if (error) throw error;
+
 
       // Send Discord notification (fire-and-forget)
       supabase.functions.invoke("notify-discord", {
