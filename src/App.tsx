@@ -11,6 +11,7 @@ import { Loader2 } from "lucide-react";
 // Public pages — direct imports (small, always needed)
 import Index from "./pages/Index";
 import BookingPage from "./pages/BookingPage";
+import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import PackagesPage from "./pages/PackagesPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
@@ -51,6 +52,8 @@ const App = () => (
               {/* Public routes */}
               <Route path="/" element={<Index />} />
               <Route path="/booking" element={<BookingPage />} />
+              <Route path="/booking/confirmation" element={<BookingConfirmationPage />} />
+
               <Route path="/packages" element={<PackagesPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/itinerary" element={<ItineraryPage />} />
