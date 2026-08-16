@@ -11,6 +11,7 @@ import { Loader2 } from "lucide-react";
 // Public pages — direct imports (small, always needed)
 import Index from "./pages/Index";
 import BookingPage from "./pages/BookingPage";
+import BookingConfirmationPage from "./pages/BookingConfirmationPage";
 import PackagesPage from "./pages/PackagesPage";
 import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
