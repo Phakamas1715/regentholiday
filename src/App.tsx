@@ -52,6 +52,8 @@ const App = () => (
               {/* Public routes */}
               <Route path="/" element={<Index />} />
               <Route path="/booking" element={<BookingPage />} />
+              <Route path="/booking/confirmation" element={<BookingConfirmationPage />} />
+
               <Route path="/packages" element={<PackagesPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/itinerary" element={<ItineraryPage />} />
