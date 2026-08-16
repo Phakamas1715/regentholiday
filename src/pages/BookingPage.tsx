@@ -167,8 +167,27 @@ export default function BookingPage() {
         },
       }).catch((err) => console.error("Discord notify failed:", err));
 
+      const createdAt = inserted?.created_at ?? new Date().toISOString();
+      const bookingCode = inserted?.id
+        ? `RH-${String(inserted.id).replace(/-/g, "").slice(0, 8).toUpperCase()}`
+        : `RH-${Date.now().toString(36).toUpperCase()}`;
+
       toast.success("ส่งคำขอเรียบร้อยแล้ว! ทีมงานจะติดต่อกลับภายใน 24 ชม.");
-      navigate("/packages");
+      navigate("/booking/confirmation", {
+        state: {
+          bookingCode,
+          contactName,
+          contactPhone,
+          contactEmail: contactEmail || null,
+          orgName: orgName || null,
+          destination: finalDestination,
+          travelers,
+          budget: budget[0],
+          startDate: startDate ? format(startDate, "yyyy-MM-dd") : null,
+          endDate: endDate ? format(endDate, "yyyy-MM-dd") : null,
+          createdAt,
+        },
+      });
     } catch (err) {
       console.error(err);
       toast.error("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
